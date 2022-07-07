@@ -2,7 +2,7 @@
   <button class="navbar__toggle" (click)="onToggleNavbar()">
     <img src="assets/icons/iconmonstr-menu.svg" />
   </button>
-  <div #container class="container collapsed">
+  <div class="container" [ngClass]="{ collapsed: isNavbarCollapsed }">
     <h4>
       <a class="navbar__brand" [routerLink]="['/home']">Lyen Imóveis</a>
     </h4>

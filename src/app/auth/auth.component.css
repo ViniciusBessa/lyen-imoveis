@@ -28,8 +28,15 @@
   cursor: pointer;
 }
 
+.form__tab:focus,
+.form__tab:hover,
+.form__tab:active {
+  opacity: 0.7;
+}
+
 .form__tab.active {
   background-color: #f0f0f0;
+  opacity: 1;
 }
 
 .form__label {
@@ -66,6 +73,7 @@
   border-radius: 100px;
   background-color: transparent;
   color: var(--color-primary);
+  transition: background-color 300ms ease-in-out;
 }
 
 .form__submit-btn:focus,
@@ -82,6 +90,7 @@
   border-radius: 100px;
   background-color: transparent;
   color: var(--color-secondary);
+  transition: background-color 300ms ease-in-out;
 }
 
 .form__clear:focus,
