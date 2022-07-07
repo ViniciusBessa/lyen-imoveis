@@ -78,6 +78,7 @@
   color: var(--font-primary);
   text-decoration: none;
   font-size: 1.1rem;
+  cursor: pointer;
 }
 
 .navbar__link::after {

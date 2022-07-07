@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
+import * as AuthActions from '../auth/store/auth.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -23,5 +24,9 @@ export class NavbarComponent implements OnInit {
   onToggleNavbar(): void {
     // Toggling the collapsed class
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+
+  onLogout(): void {
+    this.store.dispatch(AuthActions.logoutStart());
   }
 }

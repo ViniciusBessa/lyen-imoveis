@@ -37,5 +37,8 @@
       <img width="30" height="auto" src="assets/icons/iconmonstr-user-5.png" />
       <span>Entrar</span>
     </div>
+    <ul class="navbar__nav" *ngIf="isLoggedIn">
+      <li><a class="navbar__link" (click)="onLogout()">Sair</a></li>
+    </ul>
   </div>
 </nav>

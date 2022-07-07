@@ -33,6 +33,8 @@ export const authReducer = createReducer(
     loading: false,
   })),
 
+  on(AuthActions.autoLogin, (state: State) => ({ ...state, loading: true })),
+
   on(AuthActions.logoutUser, (state: State) => ({ ...state, user: null })),
 
   on(AuthActions.resetError, (state: State) => ({ ...state, error: null }))

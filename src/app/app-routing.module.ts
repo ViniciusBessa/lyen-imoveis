@@ -3,11 +3,16 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './home/home.component';
+import { LogoutRequiredGuard } from './shared/logout-required.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'auth', component: AuthComponent },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    canActivate: [LogoutRequiredGuard],
+  },
   {
     path: 'properties',
     loadChildren: () =>

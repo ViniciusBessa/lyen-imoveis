@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, catchError, map, mergeMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthError } from '../models/auth-error.model';
 import { User } from '../models/user.model';
 import * as AuthActions from './auth.actions';
 
@@ -22,9 +21,11 @@ export class AuthEffects {
             password,
           })
           .pipe(
-            map((responseData) => AuthActions.authSuccess(responseData)),
-            catchError((error: AuthError) =>
-              of(AuthActions.authFail({ error: new Error(error.err) }))
+            map((responseData) =>
+              AuthActions.authSuccess({ ...responseData, redirect: true })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(AuthActions.authFail({ error: new Error(error.error.err) }))
             )
           );
       })
@@ -42,9 +43,11 @@ export class AuthEffects {
             password,
           })
           .pipe(
-            map((responseData) => AuthActions.authSuccess(responseData)),
-            catchError((error: AuthError) =>
-              of(AuthActions.authFail({ error: new Error(error.err) }))
+            map((responseData) =>
+              AuthActions.authSuccess({ ...responseData, redirect: true })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(AuthActions.authFail({ error: new Error(error.error.err) }))
             )
           );
       })
@@ -55,23 +58,36 @@ export class AuthEffects {
     () =>
       this.$actions.pipe(
         ofType(AuthActions.authSuccess),
-        tap(() => this.router.navigate(['/home']))
+        tap((authData) => {
+          if (authData.redirect) {
+            this.router.navigate(['/home']);
+          }
+        })
       ),
     { dispatch: false }
   );
 
-  authLogout = createEffect(() =>
+  authLogoutStart = createEffect(() =>
     this.$actions.pipe(
       ofType(AuthActions.logoutStart),
       mergeMap(() =>
         this.http.get(`${environment.apiUrl}/auth/logout`).pipe(
           map(() => AuthActions.logoutUser()),
-          catchError((error: AuthError) =>
-            of(AuthActions.authFail({ error: new Error(error.err) }))
+          catchError((error: HttpErrorResponse) =>
+            of(AuthActions.authFail({ error: new Error(error.error.err) }))
           )
         )
       )
     )
+  );
+
+  authLogout = createEffect(
+    () =>
+      this.$actions.pipe(
+        ofType(AuthActions.logoutUser),
+        tap(() => this.router.navigate(['/home']))
+      ),
+    { dispatch: false }
   );
 
   authAutoLogin = createEffect(() =>
@@ -80,7 +96,14 @@ export class AuthEffects {
       mergeMap(() =>
         this.http
           .get<{ user: User }>(`${environment.apiUrl}/users/currentUser`)
-          .pipe(map((responseData) => AuthActions.authSuccess(responseData)))
+          .pipe(
+            map((responseData) =>
+              AuthActions.authSuccess({ ...responseData, redirect: false })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(AuthActions.authFail({ error: new Error(error.error.err) }))
+            )
+          )
       )
     )
   );
