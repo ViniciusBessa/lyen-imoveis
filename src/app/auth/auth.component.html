@@ -1,1 +1,199 @@
-<p>auth works!</p>
+<div class="container">
+  <div class="form__container-tab">
+    <span
+      class="form__tab"
+      [ngClass]="{ active: isLogin }"
+      (click)="isLogin = true"
+      >Entrar</span
+    >
+    <span
+      class="form__tab"
+      [ngClass]="{ active: !isLogin }"
+      (click)="isLogin = false"
+      >Cadastrar</span
+    >
+  </div>
+  <form
+    class="form"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="!isLogin"
+  >
+    <label class="form__label" for="name" *ngIf="!isLogin"
+      >Nome de usuário</label
+    >
+    <input
+      class="form__control"
+      name="name"
+      type="text"
+      formControlName="name"
+    />
+    <p
+      class="form__alert"
+      *ngIf="
+        registerForm.get('name')!.touched &&
+        registerForm.get('name')!.errors &&
+        registerForm.get('name')!.errors!['required']
+      "
+    >
+      Por favor, informe um nome de usuário
+    </p>
+    <p
+      class="form__alert"
+      *ngIf="
+        registerForm.get('name')!.touched &&
+        registerForm.get('name')!.errors &&
+        registerForm.get('name')!.errors!['minlength']
+      "
+    >
+      O nome de usuário deve ter pelo menos 6 caracteres
+    </p>
+    <p
+      class="form__alert"
+      *ngIf="
+        registerForm.get('name')!.touched &&
+        registerForm.get('name')!.errors &&
+        registerForm.get('name')!.errors!['maxlength']
+      "
+    >
+      O nome de usuário só pode ter até 20 caracteres
+    </p>
+
+    <label class="form__label" for="email">E-mail</label>
+    <input
+      class="form__control"
+      name="email"
+      type="email"
+      autocomplete="email"
+      formControlName="email"
+    />
+    <p
+      class="form__alert"
+      *ngIf="
+        registerForm.get('email')!.touched &&
+        registerForm.get('email')!.errors &&
+        registerForm.get('email')!.errors!['required']
+      "
+    >
+      Por favor, informe um e-mail
+    </p>
+    <p
+      class="form__alert"
+      *ngIf="
+        registerForm.get('email')!.touched &&
+        registerForm.get('email')!.errors &&
+        registerForm.get('email')!.errors!['email']
+      "
+    >
+      Por favor, informe um e-mail válido
+    </p>
+
+    <label class="form__label" for="password">Senha</label>
+    <input
+      class="form__control"
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      formControlName="password"
+    />
+    <p
+      class="form__alert"
+      *ngIf="
+        registerForm.get('password')!.touched &&
+        registerForm.get('password')!.errors &&
+        registerForm.get('password')!.errors!['required']
+      "
+    >
+      Por favor, informe uma senha
+    </p>
+    <p
+      class="form__alert"
+      *ngIf="
+        registerForm.get('password')!.touched &&
+        registerForm.get('password')!.errors &&
+        registerForm.get('password')!.errors!['minlength']
+      "
+    >
+      A senha deve ter pelo menos 6 caracteres
+    </p>
+
+    <div class="form__button-group">
+      <button class="form__submit-btn" type="submit">Enviar</button>
+      <button class="form__clear" type="button" (click)="onClearForms()">
+        Limpar
+      </button>
+    </div>
+  </form>
+
+  <form
+    class="form"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="isLogin"
+  >
+    <label class="form__label" for="email">E-mail</label>
+    <input
+      class="form__control"
+      name="email"
+      type="email"
+      autocomplete="email"
+      formControlName="email"
+    />
+    <p
+      class="form__alert"
+      *ngIf="
+        loginForm.get('email')!.touched &&
+        loginForm.get('email')!.errors &&
+        loginForm.get('email')!.errors!['required']
+      "
+    >
+      Por favor, informe o seu e-mail
+    </p>
+    <p
+      class="form__alert"
+      *ngIf="
+        loginForm.get('email')!.touched &&
+        loginForm.get('email')!.errors &&
+        loginForm.get('email')!.errors!['email']
+      "
+    >
+      Por favor, informe um e-mail válido
+    </p>
+
+    <label class="form__label" for="password">Senha</label>
+    <input
+      class="form__control"
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      formControlName="password"
+    />
+    <p
+      class="form__alert"
+      *ngIf="
+        loginForm.get('password')!.touched &&
+        loginForm.get('password')!.errors &&
+        loginForm.get('password')!.errors!['required']
+      "
+    >
+      Por favor, informe a sua senha
+    </p>
+    <p
+      class="form__alert"
+      *ngIf="
+        loginForm.get('password')!.touched &&
+        loginForm.get('password')!.errors &&
+        loginForm.get('password')!.errors!['minlength']
+      "
+    >
+      A senha deve ter pelo menos 6 caracteres
+    </p>
+
+    <div class="form__button-group">
+      <button class="form__submit-btn" type="submit">Enviar</button>
+      <button class="form__clear" type="button" (click)="onClearForms()">
+        Limpar
+      </button>
+    </div>
+  </form>
+</div>

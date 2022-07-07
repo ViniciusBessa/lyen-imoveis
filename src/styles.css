@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --font-primary: black;
+  --font-secondary: white;
+  --bg-primary: #eeeeee;
+  --bg-secondary: #ffffff;
+  --color-primary: #ea1515;
+  --color-secondary: #3244e4;
+  font-size: 1em;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  min-height: 80%;
+  padding: 76px 12px 8px 12px;
+}
+
+footer {
+  height: 20%;
+}
+
+* {
+  box-sizing: border-box;
+}

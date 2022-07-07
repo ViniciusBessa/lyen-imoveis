@@ -1,1 +1,41 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <button class="navbar__toggle" (click)="onToggleNavbar()">
+    <img src="assets/icons/iconmonstr-menu.svg" />
+  </button>
+  <div #container class="container collapsed">
+    <h4>
+      <a class="navbar__brand" [routerLink]="['/home']">Lyen Imóveis</a>
+    </h4>
+    <ul class="navbar__nav">
+      <li>
+        <a
+          class="navbar__link"
+          routerLinkActive="active"
+          [routerLink]="['/home']"
+          >Início</a
+        >
+      </li>
+      <li>
+        <a
+          class="navbar__link"
+          routerLinkActive="active"
+          [routerLink]="['/properties', 'search']"
+          >Buscar Imóveis</a
+        >
+      </li>
+      <li>
+        <a
+          class="navbar__link"
+          routerLinkActive="active"
+          [routerLink]="['/user', 'favorites']"
+          *ngIf="isLoggedIn"
+          >Favoritados</a
+        >
+      </li>
+    </ul>
+    <div class="navbar__flex" [routerLink]="['/auth']" *ngIf="!isLoggedIn">
+      <img width="30" height="auto" src="assets/icons/iconmonstr-user-5.png" />
+      <span>Entrar</span>
+    </div>
+  </div>
+</nav>
