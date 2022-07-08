@@ -3,7 +3,7 @@
   --font-primary: black;
   --font-secondary: white;
   --bg-primary: #eeeeee;
-  --bg-secondary: #ffffff;
+  --bg-secondary: #313131;
   --color-primary: #ea1515;
   --color-secondary: #3244e4;
   font-size: 1em;
@@ -17,7 +17,7 @@ body {
 
 main {
   min-height: 80%;
-  padding: 76px 12px 8px 12px;
+  padding: 84px 48px 8px 48px;
 }
 
 footer {
@@ -26,4 +26,10 @@ footer {
 
 * {
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    padding: 76px 8px 8px 8px;
+  }
 }

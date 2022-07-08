@@ -1,0 +1,14 @@
+.property {
+  display: flex;
+  gap: 24px;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 12px;
+  width: 60vw;
+}
+
+@media only screen and (max-width: 768px) {
+  .property {
+    width: 100%;
+  }
+}

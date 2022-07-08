@@ -27,7 +27,7 @@ export class AuthComponent implements OnInit {
     this.initLoginForm();
   }
 
-  initRegisterForm(): void {
+  private initRegisterForm(): void {
     this.registerForm = new FormGroup({
       name: new FormControl<string | null>(null, [
         Validators.required,
@@ -45,7 +45,7 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  initLoginForm(): void {
+  private initLoginForm(): void {
     this.loginForm = new FormGroup({
       email: new FormControl<string | null>(null, [
         Validators.required,

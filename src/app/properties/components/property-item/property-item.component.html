@@ -1,0 +1,21 @@
+<div class="property" [routerLink]="['/properties', property._id]">
+  <img
+    width="200"
+    height="150"
+    title="Foto de uma sala por Kara Eads"
+    alt="Foto de uma sala por Kara Eads"
+    src="assets/images/placeholder_house.jpg"
+    *ngIf="property.images.length === 0"
+  />
+  <img
+    width="200"
+    height="150"
+    alt="Foto de uma casa"
+    [src]="property.images[0]"
+    *ngIf="property.images.length >= 1"
+  />
+  <div>
+    <h2>{{ property.title }}</h2>
+    <p>{{ property.description }}</p>
+  </div>
+</div>

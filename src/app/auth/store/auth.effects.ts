@@ -2,10 +2,28 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of, catchError, map, mergeMap, tap } from 'rxjs';
+import { TypedAction } from '@ngrx/store/src/models';
+import { of, catchError, map, mergeMap, tap, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user.model';
+import { UserData } from '../models/user.model';
 import * as AuthActions from './auth.actions';
+
+const handleError = (
+  errorResponse: HttpErrorResponse
+): Observable<
+  {
+    error: Error | null;
+  } & TypedAction<'[Auth] Auth Fail'>
+> => {
+  const error = errorResponse.error.err;
+
+  if (typeof error === 'string') {
+    return of(AuthActions.authFail({ error: new Error(error) }));
+  } else if (Array.isArray(error)) {
+    return of(AuthActions.authFail({ error: new Error(error[0]) }));
+  }
+  return of(AuthActions.authFail({ error: new Error(error.error) }));
+};
 
 @Injectable()
 export class AuthEffects {
@@ -15,7 +33,7 @@ export class AuthEffects {
       mergeMap((authData) => {
         const { name, email, password } = authData;
         return this.http
-          .post<{ user: User }>(`${environment.apiUrl}/auth/register`, {
+          .post<{ user: UserData }>(`${environment.apiUrl}/auth/register`, {
             name,
             email,
             password,
@@ -24,9 +42,7 @@ export class AuthEffects {
             map((responseData) =>
               AuthActions.authSuccess({ ...responseData, redirect: true })
             ),
-            catchError((error: HttpErrorResponse) =>
-              of(AuthActions.authFail({ error: new Error(error.error.err) }))
-            )
+            catchError(handleError.bind(this))
           );
       })
     )
@@ -38,7 +54,7 @@ export class AuthEffects {
       mergeMap((authData) => {
         const { email, password } = authData;
         return this.http
-          .post<{ user: User }>(`${environment.apiUrl}/auth/login`, {
+          .post<{ user: UserData }>(`${environment.apiUrl}/auth/login`, {
             email,
             password,
           })
@@ -46,9 +62,7 @@ export class AuthEffects {
             map((responseData) =>
               AuthActions.authSuccess({ ...responseData, redirect: true })
             ),
-            catchError((error: HttpErrorResponse) =>
-              of(AuthActions.authFail({ error: new Error(error.error.err) }))
-            )
+            catchError(handleError.bind(this))
           );
       })
     )
@@ -73,9 +87,7 @@ export class AuthEffects {
       mergeMap(() =>
         this.http.get(`${environment.apiUrl}/auth/logout`).pipe(
           map(() => AuthActions.logoutUser()),
-          catchError((error: HttpErrorResponse) =>
-            of(AuthActions.authFail({ error: new Error(error.error.err) }))
-          )
+          catchError(handleError.bind(this))
         )
       )
     )
@@ -95,14 +107,12 @@ export class AuthEffects {
       ofType(AuthActions.autoLogin),
       mergeMap(() =>
         this.http
-          .get<{ user: User }>(`${environment.apiUrl}/users/currentUser`)
+          .get<{ user: UserData }>(`${environment.apiUrl}/users/currentUser`)
           .pipe(
             map((responseData) =>
               AuthActions.authSuccess({ ...responseData, redirect: false })
             ),
-            catchError((error: HttpErrorResponse) =>
-              of(AuthActions.authFail({ error: new Error(error.error.err) }))
-            )
+            catchError(() => of(AuthActions.authFail({ error: null })))
           )
       )
     )

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from '../models/user.model';
+import { UserData } from '../models/user.model';
 
 export const registerStart = createAction(
   '[Auth] Register Start',
@@ -13,12 +13,12 @@ export const loginStart = createAction(
 
 export const authSuccess = createAction(
   '[Auth] Auth Success',
-  props<{ user: User; redirect: boolean }>()
+  props<{ user: UserData; redirect: boolean }>()
 );
 
 export const authFail = createAction(
   '[Auth] Auth Fail',
-  props<{ error: Error }>()
+  props<{ error: Error | null }>()
 );
 
 export const autoLogin = createAction('[Auth] Auto Login');
