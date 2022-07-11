@@ -9,8 +9,8 @@ import {
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, mapTo, mergeMap, Observable, of, take } from 'rxjs';
-import * as fromApp from '../store/app.reducer';
-import * as AuthActions from '../auth/store/auth.actions';
+import * as fromApp from '../../store/app.reducer';
+import * as AuthActions from '../../auth/store/auth.actions';
 
 @Injectable({
   providedIn: 'root',

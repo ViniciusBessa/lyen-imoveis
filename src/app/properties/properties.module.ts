@@ -5,7 +5,6 @@ import { PropertyPageComponent } from './pages/property-page/property-page.compo
 import { PropertySearchComponent } from './pages/property-search/property-search.component';
 import { PropertiesFilterComponent } from './components/properties-filter/properties-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PropertyItemComponent } from './components/property-item/property-item.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { SharedModule } from '../shared/shared.module';
     PropertyPageComponent,
     PropertySearchComponent,
     PropertiesFilterComponent,
-    PropertyItemComponent,
   ],
   imports: [
     CommonModule,

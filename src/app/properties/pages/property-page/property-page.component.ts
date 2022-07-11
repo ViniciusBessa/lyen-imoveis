@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Property } from '../../models/property.model';
+import { Property } from '../../../shared/models/property.model';
 import { PropertiesService } from '../../properties.service';
 
 @Component({

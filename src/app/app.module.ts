@@ -16,9 +16,9 @@ import { Error404Component } from './error404/error404.component';
 import { environment } from 'src/environments/environment';
 import * as fromApp from './store/app.reducer';
 import * as fromAuth from './auth/store/auth.effects';
+import * as fromUser from './user/store/user.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     ReactiveFormsModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([fromAuth.AuthEffects]),
+    EffectsModule.forRoot([fromAuth.AuthEffects, fromUser.UserEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PropertyQuery } from './models/property-query.model';
-import { Property } from './models/property.model';
+import { Property } from '../shared/models/property.model';
 
 @Injectable({
   providedIn: 'root',

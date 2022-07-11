@@ -26,7 +26,7 @@
   </div>
 
   <div class="property__buttons">
-    <app-favorite></app-favorite>
+    <app-favorite [property]="property"></app-favorite>
     <button
       class="property__page-btn"
       [routerLink]="['/properties', property._id]"

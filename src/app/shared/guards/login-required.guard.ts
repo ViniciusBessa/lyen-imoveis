@@ -9,10 +9,10 @@ import {
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, Observable, mergeMap, of, take } from 'rxjs';
-import * as fromApp from '../store/app.reducer';
-import * as AuthActions from '../auth/store/auth.actions';
+import * as fromApp from '../../store/app.reducer';
+import * as AuthActions from '../../auth/store/auth.actions';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoginRequiredGuard implements CanActivate {
   constructor(
     private store: Store<fromApp.AppState>,
