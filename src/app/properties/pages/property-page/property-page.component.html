@@ -1,1 +1,83 @@
-<p>{{ property.title }}</p>
+<section class="property" *ngIf="property">
+  <div class="property__details">
+    <!--Property Image-->
+    <img
+      width="500"
+      height="300"
+      title="Foto de uma sala por Kara Eads"
+      alt="Foto de uma sala por Kara Eads"
+      src="assets/images/placeholder_house.jpg"
+      *ngIf="property.images.length === 0"
+    />
+    <img
+      width="500"
+      height="300"
+      alt="Foto de uma casa"
+      [src]="property.images[0]"
+      *ngIf="property.images.length >= 1"
+    />
+    <!--Property Details-->
+    <div>
+      <h1>{{ property.title }}</h1>
+      <h3>{{ property.location.city }} - {{ property.location.state }}</h3>
+      <p *ngIf="property.announceType === 'sale'">
+        R$ {{ property.price | priceFormatter }}
+      </p>
+      <p *ngIf="property.announceType === 'rent'">
+        R$ {{ property.price | priceFormatter }} / Mês
+      </p>
+      <div class="container container--center-content">
+        <button class="button">Entrar em contato</button>
+        <app-favorite [isFavorited]="isFavorited"></app-favorite>
+      </div>
+    </div>
+  </div>
+  <hr class="section-divisor" />
+
+  <!--Property Description-->
+  <div class="container container--column">
+    <h2>Descrição do anunciante</h2>
+    <p>{{ property.description }}</p>
+  </div>
+  <hr class="section-divisor" />
+
+  <!--Property Informations-->
+  <div class="container container--column">
+    <h2>Informações do imóvel</h2>
+    <div class="icon-container">
+      <div class="icon-group">
+        <img src="assets/icons/iconmonstr-bed-1.png" alt="Ícone de uma cama" />
+        <span *ngIf="property.numberBedrooms === 1">1 quarto</span>
+        <span *ngIf="property.numberBedrooms >= 2"
+          >{{ property.numberBedrooms }} quartos</span
+        >
+      </div>
+
+      <div class="icon-group">
+        <img
+          width="48"
+          height="auto"
+          src="assets/icons/bathroom-icon-0.jpg"
+          alt="Ícone de um toalete"
+        />
+        <span *ngIf="property.numberBathrooms === 1">1 banheiro</span>
+        <span *ngIf="property.numberBathrooms >= 2"
+          >{{ property.numberBathrooms }} banheiros</span
+        >
+      </div>
+
+      <div class="icon-group" *ngIf="property.petAllowed">
+        <img
+          src="assets/icons/iconmonstr-pet.png"
+          alt="Ícone da pata de um animal"
+        />
+        <span>Permite pets</span>
+      </div>
+
+      <div class="icon-group" *ngIf="property.hasGarage">
+        <img src="assets/icons/iconmonstr-car-1.png" alt="Ícone de um carro" />
+        <span>Possui garagem</span>
+      </div>
+    </div>
+  </div>
+</section>

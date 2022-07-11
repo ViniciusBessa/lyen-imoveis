@@ -10,6 +10,7 @@ import { PropertiesService } from '../../properties.service';
 })
 export class PropertyPageComponent implements OnInit {
   property!: Property;
+  isFavorited: boolean = false;
 
   constructor(
     private route: ActivatedRoute,

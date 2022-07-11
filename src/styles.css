@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+
 :root {
   --font-primary: black;
   --font-secondary: white;
@@ -6,6 +8,7 @@
   --bg-secondary: #313131;
   --color-primary: #ea1515;
   --color-secondary: #3244e4;
+  font-family: "Open Sans", sans-serif;
   font-size: 1em;
 }
 

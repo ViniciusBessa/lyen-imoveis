@@ -6,6 +6,7 @@ import { PropertySearchComponent } from './pages/property-search/property-search
 import { PropertiesFilterComponent } from './components/properties-filter/properties-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PropertyItemComponent } from './components/property-item/property-item.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,11 @@ import { PropertyItemComponent } from './components/property-item/property-item.
     PropertiesFilterComponent,
     PropertyItemComponent,
   ],
-  imports: [CommonModule, PropertiesRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    PropertiesRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
 export class PropertiesModule {}

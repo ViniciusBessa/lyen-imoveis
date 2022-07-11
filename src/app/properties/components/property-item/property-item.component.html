@@ -1,4 +1,4 @@
-<div class="property" [routerLink]="['/properties', property._id]">
+<div class="property">
   <img
     width="200"
     height="150"
@@ -14,8 +14,24 @@
     [src]="property.images[0]"
     *ngIf="property.images.length >= 1"
   />
-  <div>
-    <h2>{{ property.title }}</h2>
+  <div class="property__details">
+    <h2 class="property__title">{{ property.title }}</h2>
     <p>{{ property.description }}</p>
+    <p *ngIf="property.announceType === 'sale'">
+      R$ {{ property.price | priceFormatter }}
+    </p>
+    <p *ngIf="property.announceType === 'rent'">
+      R$ {{ property.price | priceFormatter }} / Mês
+    </p>
+  </div>
+
+  <div class="property__buttons">
+    <app-favorite></app-favorite>
+    <button
+      class="property__page-btn"
+      [routerLink]="['/properties', property._id]"
+    >
+      Ver detalhes
+    </button>
   </div>
 </div>

@@ -1,10 +1,46 @@
 .property {
   display: flex;
   gap: 24px;
-  border: 2px solid var(--color-primary);
+  border: 2px solid #dfd9d9;
   border-radius: 8px;
   padding: 12px;
   width: 60vw;
+}
+
+.property__details {
+  display: flex;
+  flex-direction: column;
+}
+
+.property__title {
+  margin-top: 0;
+}
+
+.property__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  margin-left: auto;
+}
+
+.property__page-btn {
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--color-primary);
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+
+.property__page-btn:focus,
+.property__page-btn:hover,
+.property__page-btn:active {
+  background-color: var(--color-primary);
+  color: white;
 }
 
 @media only screen and (max-width: 768px) {

@@ -18,6 +18,7 @@ import * as fromApp from './store/app.reducer';
 import * as fromAuth from './auth/store/auth.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [

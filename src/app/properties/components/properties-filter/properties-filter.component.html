@@ -1,17 +1,19 @@
-<button class="form__toggle" (click)="onToggleFilters()">Filtros</button>
+<button class="form__toggle" (click)="onToggleFilters()">
+  <img width="40" height="auto" src="assets/icons/iconmonstr-filter.png" />Filtros
+</button>
 
 <form
   class="form"
-  [ngClass]="{ hidden: !showFilters }"
   [formGroup]="filtersForm"
   (ngSubmit)="onSubmit()"
+  *ngIf="showFilters"
 >
-<div class="form__header" *ngIf="showFilters">
-  <button class="form__close-btn" type="button" (click)="onToggleFilters()">
-    &times;
-  </button>
-  <h3>Filtros</h3>
-</div>
+  <div class="form__header">
+    <button class="form__close-btn" type="button" (click)="onToggleFilters()">
+      &times;
+    </button>
+    <h3>Filtros</h3>
+  </div>
   <label class="form__label" for="announceType">Tipo de Anúncio</label>
   <select name="announceType" formControlName="announceType">
     <option value="sale">Venda</option>

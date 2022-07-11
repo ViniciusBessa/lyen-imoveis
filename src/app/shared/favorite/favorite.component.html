@@ -1,0 +1,14 @@
+<img
+  class="heart"
+  src="assets/icons/iconmonstr-favorite-filled.png"
+  title="Retirar dos favoritos"
+  (click)="onRemoveFromFavorites()"
+  *ngIf="isFavorited"
+/>
+<img
+  class="heart"
+  src="assets/icons/iconmonstr-favorite-empty.png"
+  title="Adicionar aos favoritos"
+  (click)="onAddToFavorites()"
+  *ngIf="!isFavorited"
+/>

@@ -1,13 +1,11 @@
-<div class="container">
+<section class="container">
   <div>
     <app-properties-filter
       (filters)="onFiltersUpdate($event)"
     ></app-properties-filter>
   </div>
-  <div class="container-column">
-    <app-property-item
-      [property]="property"
-      *ngFor="let property of properties"
-    ></app-property-item>
-  </div>
-</div>
+  <app-property-item
+    [property]="property"
+    *ngFor="let property of properties"
+  ></app-property-item>
+</section>
