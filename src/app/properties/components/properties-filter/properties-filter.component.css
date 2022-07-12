@@ -48,8 +48,35 @@
   margin-bottom: 4px;
 }
 
+.form__control-container {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  width: fit-content;
+  background-color: white;
+  color: #6E5E64;
+  border: 1px solid rgb(160, 157, 157);
+}
+
+.form__control {
+  width: 120px;
+  position: relative;
+  top: 1px;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
 .form__control:focus {
   outline: none;
+}
+
+.form__select {
+  width: fit-content;
+  border: 1px solid rgb(160, 157, 157);
+  padding: 4px;
 }
 
 .form__submit-btn {

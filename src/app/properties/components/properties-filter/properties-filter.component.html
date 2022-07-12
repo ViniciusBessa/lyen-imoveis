@@ -21,19 +21,27 @@
 
   <div class="form__body">
     <label class="form__label" for="announceType">Tipo de Anúncio</label>
-    <select name="announceType" formControlName="announceType">
+    <select
+      class="form__select"
+      name="announceType"
+      formControlName="announceType"
+    >
       <option value="sale">Venda</option>
       <option value="rent">Aluguel</option>
     </select>
 
     <label class="form__label" for="minPrice">Preço Mínimo</label>
-    <input
+    <div class="form__control-container">
+      <span>R$</span>
+      <input
       class="form__control"
       name="minPrice"
       type="number"
       formControlName="minPrice"
       [value]="filtersForm.value.minPrice"
     />
+    </div>
+    
     <input
       name="minPrice"
       type="range"
@@ -44,13 +52,16 @@
     />
 
     <label class="form__label" for="maxPrice">Preço Máximo</label>
-    <input
+    <div class="form__control-container">
+      <span>R$</span>
+      <input
       class="form__control"
       name="maxPrice"
       type="number"
       formControlName="maxPrice"
       [value]="filtersForm.value.maxPrice"
     />
+    </div>
     <input
       name="maxPrice"
       type="range"
@@ -60,45 +71,33 @@
       [value]="filtersForm.value.maxPrice"
     />
 
-    <label class="form__label" for="numberBedrooms">Número de Quartos</label>
-    <input
-      class="form__control"
-      name="numberBedrooms"
-      type="number"
-      formControlName="numberBedrooms"
-      [value]="filtersForm.value.numberBedrooms"
-    />
-    <input
-      name="numberBedrooms"
-      type="range"
-      formControlName="numberBedrooms"
-      min="1"
-      max="10"
-      [value]="filtersForm.value.numberBedrooms"
-    />
+    <label class="form__label" for="numberBedrooms">Quartos</label>
+    <select class="form__select" formControlName="numberBedrooms">
+      <option *ngFor="let number of [1, 2, 3, 4, 5]" [value]="number">
+        {{ number }}+
+      </option>
+    </select>
 
-    <label class="form__label" for="numberBathrooms">Número de Banheiros</label>
-    <input
-      class="form__control"
-      name="numberBathrooms"
-      type="number"
-      formControlName="numberBathrooms"
-      [value]="filtersForm.value.numberBathrooms"
-    />
-    <input
-      name="numberBathrooms"
-      type="range"
-      formControlName="numberBathrooms"
-      min="1"
-      max="10"
-      [value]="filtersForm.value.numberBathrooms"
-    />
+    <label class="form__label" for="numberBathrooms">Banheiros</label>
+    <select class="form__select" formControlName="numberBathrooms">
+      <option *ngFor="let number of [1, 2, 3, 4, 5]" [value]="number">
+        {{ number }}+
+      </option>
+    </select>
 
     <label class="form__label" for="petAllowed">Pets Permitidos</label>
-    <input name="petAllowed" type="checkbox" formControlName="petAllowed" />
+    <select class="form__select" formControlName="petAllowed">
+      <option value="">Tanto Faz</option>
+      <option value="true">Sim</option>
+      <option value="false">Não</option>
+    </select>
 
     <label class="form__label" for="hasGarage">Possui Garagem</label>
-    <input name="hasGarage" type="checkbox" formControlName="hasGarage" />
+    <select class="form__select" formControlName="hasGarage">
+      <option value="">Tanto Faz</option>
+      <option value="true">Sim</option>
+      <option value="false">Não</option>
+    </select>
 
     <button class="form__submit-btn">Aplicar Filtros</button>
   </div>

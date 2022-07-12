@@ -51,8 +51,8 @@ export class PropertiesFilterComponent implements OnInit {
         Validators.min(1),
         Validators.max(10),
       ]),
-      petAllowed: new FormControl<boolean>(false, [Validators.required]),
-      hasGarage: new FormControl<boolean>(false, [Validators.required]),
+      petAllowed: new FormControl<string>(''),
+      hasGarage: new FormControl<string>(''),
     });
   }
 
