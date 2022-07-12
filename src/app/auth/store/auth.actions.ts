@@ -3,17 +3,22 @@ import { UserData } from '../models/user.model';
 
 export const registerStart = createAction(
   '[Auth] Register Start',
-  props<{ name: string; email: string; password: string }>()
+  props<{
+    name: string;
+    email: string;
+    password: string;
+    next: string | null;
+  }>()
 );
 
 export const loginStart = createAction(
   '[Auth] Login Start',
-  props<{ email: string; password: string }>()
+  props<{ email: string; password: string; next: string | null }>()
 );
 
 export const authSuccess = createAction(
   '[Auth] Auth Success',
-  props<{ user: UserData; redirect: boolean }>()
+  props<{ user: UserData; next: string | null; redirect: boolean }>()
 );
 
 export const authFail = createAction(

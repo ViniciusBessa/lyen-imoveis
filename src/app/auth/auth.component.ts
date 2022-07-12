@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from './store/auth.actions';
@@ -15,14 +16,19 @@ export class AuthComponent implements OnInit {
   error: Error | null = null;
   isLoading: boolean = false;
   isLogin: boolean = true;
+  nextPage: string = '';
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.store.select('auth').subscribe((authState) => {
       this.error = authState.error;
       this.isLoading = authState.loading;
     });
+    this.nextPage = this.route.snapshot.queryParams['next'];
     this.initRegisterForm();
     this.initLoginForm();
   }
@@ -60,9 +66,16 @@ export class AuthComponent implements OnInit {
 
   onSubmit(): void {
     if (this.isLogin && this.loginForm.valid) {
-      this.store.dispatch(AuthActions.loginStart(this.loginForm.value));
+      this.store.dispatch(
+        AuthActions.loginStart({ ...this.loginForm.value, next: this.nextPage })
+      );
     } else if (!this.isLogin && this.registerForm.valid) {
-      this.store.dispatch(AuthActions.registerStart(this.registerForm.value));
+      this.store.dispatch(
+        AuthActions.registerStart({
+          ...this.registerForm.value,
+          next: this.nextPage,
+        })
+      );
     }
   }
 

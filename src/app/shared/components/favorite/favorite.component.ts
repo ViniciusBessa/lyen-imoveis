@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Property } from 'src/app/shared/models/property.model';
@@ -17,7 +18,7 @@ export class FavoriteComponent implements OnInit, OnDestroy {
   authStoreSubs!: Subscription;
   userStoreSubs!: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
   ngOnInit(): void {
     // Checking if the user is logged in
@@ -39,12 +40,24 @@ export class FavoriteComponent implements OnInit, OnDestroy {
   }
 
   onAddToFavorites(): void {
-    this.store.dispatch(UserActions.addFavorite({ property: this.property }));
+    if (this.isLoggedIn) {
+      this.store.dispatch(UserActions.addFavorite({ property: this.property }));
+    } else {
+      this.router.navigate(['/auth'], {
+        queryParams: { next: this.router.url },
+      });
+    }
   }
 
   onRemoveFromFavorites(): void {
-    this.store.dispatch(
-      UserActions.removeFavorite({ property: this.property })
-    );
+    if (this.isLoggedIn) {
+      this.store.dispatch(
+        UserActions.removeFavorite({ property: this.property })
+      );
+    } else {
+      this.router.navigate(['/auth'], {
+        queryParams: { next: this.router.url },
+      });
+    }
   }
 }

@@ -40,7 +40,11 @@ export class AuthEffects {
           })
           .pipe(
             map((responseData) =>
-              AuthActions.authSuccess({ ...responseData, redirect: true })
+              AuthActions.authSuccess({
+                ...responseData,
+                next: authData.next,
+                redirect: true,
+              })
             ),
             catchError(handleError.bind(this))
           );
@@ -60,7 +64,11 @@ export class AuthEffects {
           })
           .pipe(
             map((responseData) =>
-              AuthActions.authSuccess({ ...responseData, redirect: true })
+              AuthActions.authSuccess({
+                ...responseData,
+                next: authData.next,
+                redirect: true,
+              })
             ),
             catchError(handleError.bind(this))
           );
@@ -73,7 +81,9 @@ export class AuthEffects {
       this.$actions.pipe(
         ofType(AuthActions.authSuccess),
         tap((authData) => {
-          if (authData.redirect) {
+          if (authData.redirect && authData.next) {
+            this.router.navigateByUrl(authData.next);
+          } else if (authData.redirect) {
             this.router.navigate(['/home']);
           }
         })
@@ -110,7 +120,11 @@ export class AuthEffects {
           .get<{ user: UserData }>(`${environment.apiUrl}/users/currentUser`)
           .pipe(
             map((responseData) =>
-              AuthActions.authSuccess({ ...responseData, redirect: false })
+              AuthActions.authSuccess({
+                ...responseData,
+                next: null,
+                redirect: false,
+              })
             ),
             catchError(() => of(AuthActions.authFail({ error: null })))
           )

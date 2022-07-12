@@ -39,13 +39,19 @@ export class LoginRequiredGuard implements CanActivate {
               if (authState.user) {
                 return true;
               }
-              return this.router.createUrlTree(['/home']);
+              return this.router.createUrlTree(['/auth'], {
+                queryParams: { next: state.url },
+              });
             })
           );
         } else if (authState.user) {
           return of(true);
         }
-        return of(this.router.createUrlTree(['/home']));
+        return of(
+          this.router.createUrlTree(['/auth'], {
+            queryParams: { next: state.url },
+          })
+        );
       })
     );
   }
