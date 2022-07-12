@@ -21,10 +21,10 @@
       <h1>{{ property.title }}</h1>
       <h3>{{ property.location.city }} - {{ property.location.state }}</h3>
       <p *ngIf="property.announceType === 'sale'">
-        R$ {{ property.price | priceFormatter }}
+        {{ property.price | currency: 'BRL' }}
       </p>
       <p *ngIf="property.announceType === 'rent'">
-        R$ {{ property.price | priceFormatter }} / Mês
+        {{ property.price | currency: 'BRL' }} / Mês
       </p>
       <div class="container container--center-content">
         <button class="button">Entrar em contato</button>
