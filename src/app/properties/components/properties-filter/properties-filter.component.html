@@ -1,5 +1,9 @@
 <button class="form__toggle" (click)="onToggleFilters()">
-  <img width="40" height="auto" src="assets/icons/iconmonstr-filter.png" />Filtros
+  <img
+    width="40"
+    height="auto"
+    src="assets/icons/iconmonstr-filter.png"
+  />Filtros
 </button>
 
 <form
@@ -14,85 +18,88 @@
     </button>
     <h3>Filtros</h3>
   </div>
-  <label class="form__label" for="announceType">Tipo de Anúncio</label>
-  <select name="announceType" formControlName="announceType">
-    <option value="sale">Venda</option>
-    <option value="rent">Aluguel</option>
-  </select>
 
-  <label class="form__label" for="minPrice">Preço Mínimo</label>
-  <input
-    class="form__control"
-    name="minPrice"
-    type="number"
-    formControlName="minPrice"
-    [value]="filtersForm.value.minPrice"
-  />
-  <input
-    name="minPrice"
-    type="range"
-    formControlName="minPrice"
-    min="100"
-    max="10000000"
-    [value]="filtersForm.value.minPrice"
-  />
+  <div class="form__body">
+    <label class="form__label" for="announceType">Tipo de Anúncio</label>
+    <select name="announceType" formControlName="announceType">
+      <option value="sale">Venda</option>
+      <option value="rent">Aluguel</option>
+    </select>
 
-  <label class="form__label" for="maxPrice">Preço Máximo</label>
-  <input
-    class="form__control"
-    name="maxPrice"
-    type="number"
-    formControlName="maxPrice"
-    [value]="filtersForm.value.maxPrice"
-  />
-  <input
-    name="maxPrice"
-    type="range"
-    formControlName="maxPrice"
-    min="100"
-    max="10000000"
-    [value]="filtersForm.value.maxPrice"
-  />
+    <label class="form__label" for="minPrice">Preço Mínimo</label>
+    <input
+      class="form__control"
+      name="minPrice"
+      type="number"
+      formControlName="minPrice"
+      [value]="filtersForm.value.minPrice"
+    />
+    <input
+      name="minPrice"
+      type="range"
+      formControlName="minPrice"
+      min="100"
+      max="10000000"
+      [value]="filtersForm.value.minPrice"
+    />
 
-  <label class="form__label" for="numberBedrooms">Número de Quartos</label>
-  <input
-    class="form__control"
-    name="numberBedrooms"
-    type="number"
-    formControlName="numberBedrooms"
-    [value]="filtersForm.value.numberBedrooms"
-  />
-  <input
-    name="numberBedrooms"
-    type="range"
-    formControlName="numberBedrooms"
-    min="1"
-    max="10"
-    [value]="filtersForm.value.numberBedrooms"
-  />
+    <label class="form__label" for="maxPrice">Preço Máximo</label>
+    <input
+      class="form__control"
+      name="maxPrice"
+      type="number"
+      formControlName="maxPrice"
+      [value]="filtersForm.value.maxPrice"
+    />
+    <input
+      name="maxPrice"
+      type="range"
+      formControlName="maxPrice"
+      min="100"
+      max="10000000"
+      [value]="filtersForm.value.maxPrice"
+    />
 
-  <label class="form__label" for="numberBathrooms">Número de Banheiros</label>
-  <input
-    class="form__control"
-    name="numberBathrooms"
-    type="number"
-    formControlName="numberBathrooms"
-    [value]="filtersForm.value.numberBathrooms"
-  />
-  <input
-    name="numberBathrooms"
-    type="range"
-    formControlName="numberBathrooms"
-    min="1"
-    max="10"
-    [value]="filtersForm.value.numberBathrooms"
-  />
+    <label class="form__label" for="numberBedrooms">Número de Quartos</label>
+    <input
+      class="form__control"
+      name="numberBedrooms"
+      type="number"
+      formControlName="numberBedrooms"
+      [value]="filtersForm.value.numberBedrooms"
+    />
+    <input
+      name="numberBedrooms"
+      type="range"
+      formControlName="numberBedrooms"
+      min="1"
+      max="10"
+      [value]="filtersForm.value.numberBedrooms"
+    />
 
-  <label class="form__label" for="petAllowed">Pets Permitidos</label>
-  <input name="petAllowed" type="checkbox" formControlName="petAllowed" />
+    <label class="form__label" for="numberBathrooms">Número de Banheiros</label>
+    <input
+      class="form__control"
+      name="numberBathrooms"
+      type="number"
+      formControlName="numberBathrooms"
+      [value]="filtersForm.value.numberBathrooms"
+    />
+    <input
+      name="numberBathrooms"
+      type="range"
+      formControlName="numberBathrooms"
+      min="1"
+      max="10"
+      [value]="filtersForm.value.numberBathrooms"
+    />
 
-  <label class="form__label" for="hasGarage">Possui Garagem</label>
-  <input name="hasGarage" type="checkbox" formControlName="hasGarage" />
+    <label class="form__label" for="petAllowed">Pets Permitidos</label>
+    <input name="petAllowed" type="checkbox" formControlName="petAllowed" />
 
-  <button class="form__submit-btn">Aplicar Filtros</button>
+    <label class="form__label" for="hasGarage">Possui Garagem</label>
+    <input name="hasGarage" type="checkbox" formControlName="hasGarage" />
+
+    <button class="form__submit-btn">Aplicar Filtros</button>
+  </div>
 </form>

@@ -5,3 +5,22 @@
   gap: 12px;
   margin-top: 24px;
 }
+
+.container__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+
+  .container__buttons {
+    justify-content: center;
+  }
+}

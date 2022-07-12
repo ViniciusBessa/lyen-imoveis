@@ -8,9 +8,7 @@
   width: 90vw;
   height: 80vh;
   z-index: 1;
-  padding: 12px;
   border: 4px solid #e6e6e6;
-  border-radius: 8px;
   background-color: white;
   overflow-y: scroll;
 }
@@ -18,6 +16,14 @@
 .form__header {
   display: flex;
   gap: 12px;
+  padding: 12px;
+  background-color: var(--bg-primary);
+}
+
+.form__body {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
 }
 
 .form__toggle {
@@ -52,8 +58,10 @@
   color: var(--color-secondary);
   background-color: transparent;
   border-radius: 4px;
-  height: 28px;
+  width: fit-content;
   font-size: 1rem;
+  padding: 8px;
+  cursor: pointer;
   transition: background-color 300ms ease-in-out;
 }
 
