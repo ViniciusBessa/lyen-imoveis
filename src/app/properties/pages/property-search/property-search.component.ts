@@ -12,6 +12,7 @@ import { PropertiesService } from '../../properties.service';
 export class PropertySearchComponent implements OnInit {
   properties: Property[] = [];
   isLoading: boolean = false;
+  sortingText: string = 'Mais recentes';
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,16 @@ export class PropertySearchComponent implements OnInit {
     this.router.navigate(['.'], {
       relativeTo: this.route,
       queryParams: { ...filters, page: null },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  onSetSorting(event: any, sort: string | null): void {
+    this.sortingText = event.target.outerText;
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParams: { sort, page: null },
+      queryParamsHandling: 'merge',
     });
   }
 }

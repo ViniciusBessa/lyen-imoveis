@@ -3,6 +3,26 @@
     <app-properties-filter
       (filters)="onFiltersUpdate($event)"
     ></app-properties-filter>
+    <div class="dropdown">
+      <button class="dropdown__btn">
+        {{ sortingText }}
+        <img
+          class="dropdown__caret"
+          src="assets/icons/iconmonstr-caret-down-filled.png"
+        />
+      </button>
+      <div class="dropdown__content">
+        <p class="dropdown__item" (click)="onSetSorting($event, null)">
+          Mais recentes
+        </p>
+        <p class="dropdown__item" (click)="onSetSorting($event, '-price')">
+          Maior preço
+        </p>
+        <p class="dropdown__item" (click)="onSetSorting($event, 'price')">
+          Menor preço
+        </p>
+      </div>
+    </div>
   </div>
   <app-property-item
     [property]="property"
