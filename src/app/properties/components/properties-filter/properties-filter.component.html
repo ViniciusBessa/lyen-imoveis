@@ -22,7 +22,7 @@
   <div class="form__body">
     <label class="form__label" for="announceType">Tipo de Anúncio</label>
     <select
-      class="form__select"
+      class="form__select form__select--mid"
       name="announceType"
       formControlName="announceType"
     >
@@ -30,18 +30,39 @@
       <option value="rent">Aluguel</option>
     </select>
 
+    <label class="form__label" for="state">Estado</label>
+    <select
+      class="form__select form__select--big"
+      name="state"
+      formControlName="state"
+      (change)="onUpdateCities()"
+    >
+      <option value="">Todos</option>
+      <option [value]="state" *ngFor="let state of states">{{ state }}</option>
+    </select>
+
+    <label class="form__label" for="state">Cidade</label>
+    <select
+      class="form__select form__select--big"
+      name="state"
+      formControlName="city"
+    >
+      <option value="">Todos</option>
+      <option [value]="city" *ngFor="let city of cities">{{ city }}</option>
+    </select>
+
     <label class="form__label" for="minPrice">Preço Mínimo</label>
     <div class="form__control-container">
       <span>R$</span>
       <input
-      class="form__control"
-      name="minPrice"
-      type="number"
-      formControlName="minPrice"
-      [value]="filtersForm.value.minPrice"
-    />
+        class="form__control"
+        name="minPrice"
+        type="number"
+        formControlName="minPrice"
+        [value]="filtersForm.value.minPrice"
+      />
     </div>
-    
+
     <input
       name="minPrice"
       type="range"
@@ -55,12 +76,12 @@
     <div class="form__control-container">
       <span>R$</span>
       <input
-      class="form__control"
-      name="maxPrice"
-      type="number"
-      formControlName="maxPrice"
-      [value]="filtersForm.value.maxPrice"
-    />
+        class="form__control"
+        name="maxPrice"
+        type="number"
+        formControlName="maxPrice"
+        [value]="filtersForm.value.maxPrice"
+      />
     </div>
     <input
       name="maxPrice"
@@ -72,28 +93,34 @@
     />
 
     <label class="form__label" for="numberBedrooms">Quartos</label>
-    <select class="form__select" formControlName="numberBedrooms">
+    <select
+      class="form__select form__select--small"
+      formControlName="numberBedrooms"
+    >
       <option *ngFor="let number of [1, 2, 3, 4, 5]" [value]="number">
         {{ number }}+
       </option>
     </select>
 
     <label class="form__label" for="numberBathrooms">Banheiros</label>
-    <select class="form__select" formControlName="numberBathrooms">
+    <select
+      class="form__select form__select--small"
+      formControlName="numberBathrooms"
+    >
       <option *ngFor="let number of [1, 2, 3, 4, 5]" [value]="number">
         {{ number }}+
       </option>
     </select>
 
     <label class="form__label" for="petAllowed">Pets Permitidos</label>
-    <select class="form__select" formControlName="petAllowed">
+    <select class="form__select form__select--mid" formControlName="petAllowed">
       <option value="">Tanto Faz</option>
       <option value="true">Sim</option>
       <option value="false">Não</option>
     </select>
 
     <label class="form__label" for="hasGarage">Possui Garagem</label>
-    <select class="form__select" formControlName="hasGarage">
+    <select class="form__select form__select--mid" formControlName="hasGarage">
       <option value="">Tanto Faz</option>
       <option value="true">Sim</option>
       <option value="false">Não</option>

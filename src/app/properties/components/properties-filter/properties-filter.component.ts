@@ -1,5 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription, take } from 'rxjs';
+import { LocationsService } from 'src/app/shared/services/locations.service';
 import { PropertyQuery } from '../../models/property-query.model';
 
 @Component({
@@ -7,15 +15,28 @@ import { PropertyQuery } from '../../models/property-query.model';
   templateUrl: './properties-filter.component.html',
   styleUrls: ['./properties-filter.component.css'],
 })
-export class PropertiesFilterComponent implements OnInit {
+export class PropertiesFilterComponent implements OnInit, OnDestroy {
   @Output() filters = new EventEmitter<PropertyQuery>();
   filtersForm!: FormGroup;
   showFilters: boolean = false;
+  states: string[] = [];
+  cities: string[] = [];
+  locationStatesSubs!: Subscription;
+  locationCitiesSubs!: Subscription;
 
-  constructor() {}
+  constructor(private locationsService: LocationsService) {}
 
   ngOnInit(): void {
     this.initForm();
+
+    this.locationStatesSubs = this.locationsService
+      .getStates()
+      .subscribe({ next: ({ states }) => (this.states = states) });
+
+    this.locationCitiesSubs = this.locationsService
+      .getCities()
+      .subscribe({ next: ({ cities }) => (this.cities = cities) });
+
     this.filtersForm.valueChanges.subscribe(() => {
       const minPriceControl = <FormControl>this.filtersForm.get('minPrice');
       const maxPriceControl = <FormControl>this.filtersForm.get('maxPrice');
@@ -24,6 +45,11 @@ export class PropertiesFilterComponent implements OnInit {
         this.filtersForm.patchValue({ maxPrice: minPriceControl.value });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.locationStatesSubs.unsubscribe();
+    this.locationCitiesSubs.unsubscribe();
   }
 
   private initForm(): void {
@@ -41,6 +67,8 @@ export class PropertiesFilterComponent implements OnInit {
       announceType: new FormControl<string | null>('sale', [
         Validators.required,
       ]),
+      state: new FormControl<string>(''),
+      city: new FormControl<string>(''),
       numberBedrooms: new FormControl<number>(1, [
         Validators.required,
         Validators.min(1),
@@ -66,6 +94,8 @@ export class PropertiesFilterComponent implements OnInit {
       ];
       const propertyQuery: PropertyQuery = {
         announceType: this.filtersForm.value.announceType,
+        state: this.filtersForm.value.state,
+        city: this.filtersForm.value.city,
         numericFilters: numericFilters.join(','),
         petAllowed: this.filtersForm.value.petAllowed,
         hasGarage: this.filtersForm.value.hasGarage,
@@ -76,5 +106,13 @@ export class PropertiesFilterComponent implements OnInit {
 
   onToggleFilters(): void {
     this.showFilters = !this.showFilters;
+  }
+
+  onUpdateCities(): void {
+    const state: string = this.filtersForm.get('state')?.value;
+    this.locationsService
+      .getCities(state)
+      .pipe(take(1))
+      .subscribe({ next: ({ cities }) => (this.cities = cities) });
   }
 }

@@ -79,6 +79,18 @@
   padding: 4px;
 }
 
+.form__select--small {
+  width: 48px;
+}
+
+.form__select--mid {
+  width: 94px;
+}
+
+.form__select--big {
+  width: 128px;
+}
+
 .form__submit-btn {
   margin-top: 12px;
   border: 2px solid var(--color-secondary);
