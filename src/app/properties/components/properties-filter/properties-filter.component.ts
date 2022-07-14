@@ -101,6 +101,7 @@ export class PropertiesFilterComponent implements OnInit, OnDestroy {
         hasGarage: this.filtersForm.value.hasGarage,
       };
       this.filters.emit(propertyQuery);
+      this.onToggleFilters();
     }
   }
 

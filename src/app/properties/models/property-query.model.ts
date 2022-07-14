@@ -1,8 +1,10 @@
 export interface PropertyQuery {
-  [key: string]: any,
+  [key: string]: any;
   announceType?: string;
   numericFilters?: string;
   petAllowed?: boolean;
   hasGarage?: boolean;
   page?: number;
+  city?: string;
+  state?: string;
 }

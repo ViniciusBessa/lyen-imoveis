@@ -21,10 +21,10 @@
       <h1>{{ property.title }}</h1>
       <h3>{{ property.location.city }} - {{ property.location.state }}</h3>
       <p *ngIf="property.announceType === 'sale'">
-        {{ property.price | currency: 'BRL' }}
+        {{ property.price | currency: "BRL" }}
       </p>
       <p *ngIf="property.announceType === 'rent'">
-        {{ property.price | currency: 'BRL' }} / Mês
+        {{ property.price | currency: "BRL" }} / Mês
       </p>
       <div class="container container--center-content">
         <button class="button">Entrar em contato</button>
@@ -80,4 +80,16 @@
       </div>
     </div>
   </div>
+
+  <!--Similar Properties-->
+  <hr class="section-divisor" *ngIf="similarProperties.length > 0" />
+  <div class="container container--column" *ngIf="similarProperties.length > 0">
+    <h2>Outras cidades em {{ property.location.city }}</h2>
+    <app-property-item
+      [property]="similarProperty"
+      *ngFor="let similarProperty of similarProperties"
+    ></app-property-item>
+  </div>
 </section>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
