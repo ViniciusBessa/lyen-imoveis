@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { Property } from '../../../shared/models/property.model';
 import { PropertiesService } from '../../properties.service';
 
@@ -9,11 +9,13 @@ import { PropertiesService } from '../../properties.service';
   templateUrl: './property-page.component.html',
   styleUrls: ['./property-page.component.css'],
 })
-export class PropertyPageComponent implements OnInit {
+export class PropertyPageComponent implements OnInit, OnDestroy {
   property!: Property;
   similarProperties: Property[] = [];
   isFavorited: boolean = false;
   isLoading: boolean = false;
+
+  private propertySubs!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,15 +37,19 @@ export class PropertyPageComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.propertySubs.unsubscribe();
+  }
+
   private loadSimilarProperties(): void {
     this.propertiesService
       .getProperties({ city: this.property.location.city })
       .pipe(take(1))
       .subscribe({
         next: ({ properties }) =>
-          (this.similarProperties = properties.filter(
-            (property) => property._id !== this.property._id
-          ).slice(0, 4)),
+          (this.similarProperties = properties
+            .filter((property) => property._id !== this.property._id)
+            .slice(0, 4)),
       });
   }
 }

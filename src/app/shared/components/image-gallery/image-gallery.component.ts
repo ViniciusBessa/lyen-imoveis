@@ -8,7 +8,7 @@ import { Property } from '../../models/property.model';
 })
 export class ImageGalleryComponent implements OnInit {
   @Input() images: Property['images'] = [];
-  selectedImageIndex!: number;
+  selectedImageIndex: number = 0;
 
   constructor() {}
 

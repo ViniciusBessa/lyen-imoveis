@@ -16,13 +16,15 @@ import { PropertyQuery } from '../../models/property-query.model';
   styleUrls: ['./properties-filter.component.css'],
 })
 export class PropertiesFilterComponent implements OnInit, OnDestroy {
-  @Output() filters = new EventEmitter<PropertyQuery>();
+  @Output() private filters = new EventEmitter<PropertyQuery>();
   filtersForm!: FormGroup;
   showFilters: boolean = false;
   states: string[] = [];
   cities: string[] = [];
-  locationStatesSubs!: Subscription;
-  locationCitiesSubs!: Subscription;
+
+  private locationStatesSubs!: Subscription;
+  private locationCitiesSubs!: Subscription;
+  private filtersFormSubs!: Subscription;
 
   constructor(private locationsService: LocationsService) {}
 
@@ -37,7 +39,7 @@ export class PropertiesFilterComponent implements OnInit, OnDestroy {
       .getCities()
       .subscribe({ next: ({ cities }) => (this.cities = cities) });
 
-    this.filtersForm.valueChanges.subscribe(() => {
+    this.filtersFormSubs = this.filtersForm.valueChanges.subscribe(() => {
       const minPriceControl = <FormControl>this.filtersForm.get('minPrice');
       const maxPriceControl = <FormControl>this.filtersForm.get('maxPrice');
 
@@ -50,6 +52,7 @@ export class PropertiesFilterComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.locationStatesSubs.unsubscribe();
     this.locationCitiesSubs.unsubscribe();
+    this.filtersFormSubs.unsubscribe();
   }
 
   private initForm(): void {

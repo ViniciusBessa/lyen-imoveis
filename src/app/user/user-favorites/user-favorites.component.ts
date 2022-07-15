@@ -10,8 +10,9 @@ import * as fromApp from '../../store/app.reducer';
   styleUrls: ['./user-favorites.component.css'],
 })
 export class UserFavoritesComponent implements OnInit, OnDestroy {
-  userStoreSubs!: Subscription;
   favoritedProperties: Property[] = [];
+
+  private userStoreSubs!: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {}
 

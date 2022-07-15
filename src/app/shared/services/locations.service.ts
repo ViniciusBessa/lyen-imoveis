@@ -23,7 +23,6 @@ export class LocationsService {
     if (state) {
       httpParams = httpParams.append('state', state);
     }
-
     return this.http.get<{ cities: string[]; numberOfCities: number }>(
       `${environment.apiUrl}/locations/cities`,
       { params: httpParams }

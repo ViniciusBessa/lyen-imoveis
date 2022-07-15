@@ -15,12 +15,7 @@ export class PropertiesService {
     properties: Property[];
     numberOfProperties: number;
   }> {
-    let httpParams = new HttpParams();
-    for (const key in filters) {
-      if (Object.prototype.hasOwnProperty.call(filters, key)) {
-        httpParams = httpParams.append(key, filters[key]);
-      }
-    }
+    const httpParams = this.createHttpParams(filters);
     return this.http.get<{
       properties: Property[];
       numberOfProperties: number;
@@ -31,12 +26,7 @@ export class PropertiesService {
     properties: Property[];
     numberOfProperties: number;
   }> {
-    let httpParams = new HttpParams();
-    for (const key in filters) {
-      if (Object.prototype.hasOwnProperty.call(filters, key)) {
-        httpParams = httpParams.append(key, filters[key]);
-      }
-    }
+    let httpParams = this.createHttpParams(filters);
     httpParams = httpParams.delete('page');
     return this.http.get<{
       properties: Property[];
@@ -48,5 +38,16 @@ export class PropertiesService {
     return this.http.get<{ property: Property }>(
       `${environment.apiUrl}/properties/${propertyId}`
     );
+  }
+
+  private createHttpParams(filters: PropertyQuery): HttpParams {
+    let httpParams = new HttpParams();
+
+    for (const key in filters) {
+      if (Object.prototype.hasOwnProperty.call(filters, key)) {
+        httpParams = httpParams.append(key, filters[key]);
+      }
+    }
+    return httpParams;
   }
 }

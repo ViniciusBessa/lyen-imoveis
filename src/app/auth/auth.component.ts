@@ -16,7 +16,7 @@ export class AuthComponent implements OnInit {
   error: Error | null = null;
   isLoading: boolean = false;
   isLogin: boolean = true;
-  nextPage: string = '';
+  private nextPage: string = '';
 
   constructor(
     private store: Store<fromApp.AppState>,

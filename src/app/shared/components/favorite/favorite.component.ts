@@ -15,8 +15,9 @@ export class FavoriteComponent implements OnInit, OnDestroy {
   @Input() property!: Property;
   isFavorited: boolean = false;
   isLoggedIn: boolean = false;
-  authStoreSubs!: Subscription;
-  userStoreSubs!: Subscription;
+
+  private authStoreSubs!: Subscription;
+  private userStoreSubs!: Subscription;
 
   constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
