@@ -56,7 +56,7 @@
 
 .container--column {
   flex-direction: column;
-  gap: 0;
+  gap: 8px;
 }
 
 .container--center-content {

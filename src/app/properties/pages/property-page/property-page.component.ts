@@ -43,7 +43,7 @@ export class PropertyPageComponent implements OnInit {
         next: ({ properties }) =>
           (this.similarProperties = properties.filter(
             (property) => property._id !== this.property._id
-          )),
+          ).slice(0, 4)),
       });
   }
 }

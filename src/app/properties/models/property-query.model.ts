@@ -5,6 +5,7 @@ export interface PropertyQuery {
   petAllowed?: boolean;
   hasGarage?: boolean;
   page?: number;
+  limit?: number;
   city?: string;
   state?: string;
 }

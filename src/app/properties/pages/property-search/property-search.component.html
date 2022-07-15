@@ -28,34 +28,34 @@
     [property]="property"
     *ngFor="let property of properties"
   ></app-property-item>
-
-  <div class="pagination" *ngIf="properties.length >= 1">
-    <a
-      class="pagination__link"
-      [routerLink]="['/properties', 'search']"
-      [queryParams]="{ page: currentPage - 1 }"
-      queryParamsHandling="merge"
-      *ngIf="currentPage > 1"
-      >{{ currentPage - 1 }}</a
-    >
-    <a class="pagination__link pagination__link--active">{{ currentPage }}</a>
-    <a
-      class="pagination__link"
-      [routerLink]="['/properties', 'search']"
-      [queryParams]="{ page: currentPage + 1 }"
-      queryParamsHandling="merge"
-      *ngIf="currentPage < totalPages"
-      >{{ currentPage + 1 }}</a
-    >
-    <a
-      class="pagination__link"
-      [routerLink]="['/properties', 'search']"
-      [queryParams]="{ page: totalPages }"
-      queryParamsHandling="merge"
-      *ngIf="currentPage + 1 < totalPages"
-      >{{ totalPages }}</a
-    >
-  </div>
 </section>
+
+<div class="pagination" *ngIf="properties.length >= 1">
+  <a
+    class="pagination__link"
+    [routerLink]="['/properties', 'search']"
+    [queryParams]="{ page: currentPage - 1 }"
+    queryParamsHandling="merge"
+    *ngIf="currentPage > 1"
+    >{{ currentPage - 1 }}</a
+  >
+  <a class="pagination__link pagination__link--active">{{ currentPage }}</a>
+  <a
+    class="pagination__link"
+    [routerLink]="['/properties', 'search']"
+    [queryParams]="{ page: currentPage + 1 }"
+    queryParamsHandling="merge"
+    *ngIf="currentPage < totalPages"
+    >{{ currentPage + 1 }}</a
+  >
+  <a
+    class="pagination__link"
+    [routerLink]="['/properties', 'search']"
+    [queryParams]="{ page: totalPages }"
+    queryParamsHandling="merge"
+    *ngIf="currentPage + 1 < totalPages"
+    >{{ totalPages }}</a
+  >
+</div>
 
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>

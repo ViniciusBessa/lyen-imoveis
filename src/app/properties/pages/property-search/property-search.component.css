@@ -77,7 +77,7 @@
   border: 2px solid var(--color-primary);
   border-radius: 80px;
   background-color: var(--bg-secondary);
-  min-width: 180px;
+  width: 180px;
   margin: auto;
   padding: 12px 12px;
 }
