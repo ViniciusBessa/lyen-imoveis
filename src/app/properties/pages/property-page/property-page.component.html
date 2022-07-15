@@ -71,7 +71,7 @@
   <!--Similar Properties-->
   <hr class="section-divisor" *ngIf="similarProperties.length > 0" />
   <div class="container container--column" *ngIf="similarProperties.length > 0">
-    <h2>Outras cidades em {{ property.location.city }}</h2>
+    <h2>Outros imóveis em {{ property.location.city }}</h2>
     <app-property-item
       [property]="similarProperty"
       *ngFor="let similarProperty of similarProperties"
