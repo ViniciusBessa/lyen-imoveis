@@ -27,6 +27,23 @@ export class PropertiesService {
     }>(`${environment.apiUrl}/properties`, { params: httpParams });
   }
 
+  getPropertiesCount(filters: PropertyQuery): Observable<{
+    properties: Property[];
+    numberOfProperties: number;
+  }> {
+    let httpParams = new HttpParams();
+    for (const key in filters) {
+      if (Object.prototype.hasOwnProperty.call(filters, key)) {
+        httpParams = httpParams.append(key, filters[key]);
+      }
+    }
+    httpParams = httpParams.append('limit', 0);
+    return this.http.get<{
+      properties: Property[];
+      numberOfProperties: number;
+    }>(`${environment.apiUrl}/properties`, { params: httpParams });
+  }
+
   getProperty(propertyId: string): Observable<{ property: Property }> {
     return this.http.get<{ property: Property }>(
       `${environment.apiUrl}/properties/${propertyId}`

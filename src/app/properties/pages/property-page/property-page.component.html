@@ -1,21 +1,8 @@
 <section class="property" *ngIf="property">
   <div class="property__details">
     <!--Property Image-->
-    <img
-      width="500"
-      height="300"
-      title="Foto de uma sala por Kara Eads"
-      alt="Foto de uma sala por Kara Eads"
-      src="assets/images/placeholder_house.jpg"
-      *ngIf="property.images.length === 0"
-    />
-    <img
-      width="500"
-      height="300"
-      alt="Foto de uma casa"
-      [src]="property.images[0]"
-      *ngIf="property.images.length >= 1"
-    />
+    <app-image-gallery [images]="property.images"></app-image-gallery>
+
     <!--Property Details-->
     <div>
       <h1>{{ property.title }}</h1>

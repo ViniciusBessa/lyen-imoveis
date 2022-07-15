@@ -1,0 +1,26 @@
+<div class="image-gallery">
+  <img
+    class="image-gallery__selected"
+    title="Foto de uma sala por Kara Eads"
+    alt="Foto de uma sala por Kara Eads"
+    src="assets/images/placeholder_house.jpg"
+    *ngIf="images.length === 0"
+  />
+  <img
+    class="image-gallery__selected"
+    alt="Foto de uma casa"
+    [src]="images[selectedImageIndex]"
+    *ngIf="images.length >= 1"
+  />
+
+  <div class="image-gallery__images">
+    <img
+      width="120"
+      height="60"
+      alt="Foto de uma casa"
+      [src]="imageUrl"
+      (click)="onSelectImage(index)"
+      *ngFor="let imageUrl of images; let index = index"
+    />
+  </div>
+</div>

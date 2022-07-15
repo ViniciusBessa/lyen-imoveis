@@ -1,0 +1,24 @@
+.image-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 50vw;
+  height: fit-content;
+}
+
+.image-gallery__images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.image-gallery__selected {
+  width: 100%;
+  border: 3px solid #dfd9d9;
+}
+
+@media only screen and (max-width: 653px) {
+  .image-gallery {
+    width: 100%;
+  }
+}

@@ -7,6 +7,7 @@ import { of, catchError, map, mergeMap, tap, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserData } from '../models/user.model';
 import * as AuthActions from './auth.actions';
+import * as UserActions from '../../user/store/user.actions';
 
 const handleError = (
   errorResponse: HttpErrorResponse
@@ -76,19 +77,18 @@ export class AuthEffects {
     )
   );
 
-  authSuccess = createEffect(
-    () =>
-      this.$actions.pipe(
-        ofType(AuthActions.authSuccess),
-        tap((authData) => {
-          if (authData.redirect && authData.next) {
-            this.router.navigateByUrl(authData.next);
-          } else if (authData.redirect) {
-            this.router.navigate(['/home']);
-          }
-        })
-      ),
-    { dispatch: false }
+  authSuccess = createEffect(() =>
+    this.$actions.pipe(
+      ofType(AuthActions.authSuccess),
+      map((authData) => {
+        if (authData.redirect && authData.next) {
+          this.router.navigateByUrl(authData.next);
+        } else if (authData.redirect) {
+          this.router.navigate(['/home']);
+        }
+        return UserActions.fetchFavorites();
+      })
+    )
   );
 
   authLogoutStart = createEffect(() =>
