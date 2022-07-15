@@ -37,7 +37,7 @@ export class PropertiesService {
         httpParams = httpParams.append(key, filters[key]);
       }
     }
-    httpParams = httpParams.append('limit', 0);
+    httpParams = httpParams.delete('page');
     return this.http.get<{
       properties: Property[];
       numberOfProperties: number;

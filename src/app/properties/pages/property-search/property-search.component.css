@@ -70,6 +70,31 @@
   display: block;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  border: 2px solid var(--color-primary);
+  border-radius: 80px;
+  background-color: var(--bg-secondary);
+  min-width: 180px;
+  margin: auto;
+  padding: 12px 12px;
+}
+
+.pagination__link {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+  background-color: transparent;
+  transition: background-color 500ms ease-in-out;
+}
+
+.pagination__link--active, .pagination__link:hover {
+  background-color: #dadada;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     flex-direction: row;
