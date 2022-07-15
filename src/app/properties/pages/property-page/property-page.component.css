@@ -3,6 +3,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  background-color: var(--bg-secondary);
+  padding: 12px 48px 12px 48px;
 }
 
 .property__details {
@@ -64,4 +66,10 @@
 .section-divisor {
   border: 1px solid #dfd9d9;
   width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .property {
+    padding: 8px;
+  }
 }

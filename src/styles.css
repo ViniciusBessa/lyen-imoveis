@@ -4,8 +4,8 @@
 :root {
   --font-primary: black;
   --font-secondary: white;
-  --bg-primary: #eeeeee;
-  --bg-secondary: #313131;
+  --bg-primary: #f7f7f7;
+  --bg-secondary: #ffffff;
   --bg-tertiary: #313131;
   --color-primary: #ea1515;
   --color-secondary: #3244e4;
@@ -21,7 +21,9 @@ body {
 
 main {
   min-height: 80%;
-  padding: 84px 48px 8px 48px;
+  padding-top: 80px;
+  background-color: var(--bg-primary);
+  color: var(--font-primary);
 }
 
 footer {
@@ -34,6 +36,6 @@ footer {
 
 @media only screen and (max-width: 600px) {
   main {
-    padding: 76px 8px 8px 8px;
+    padding-top: 64px;
   }
 }
