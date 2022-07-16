@@ -26,14 +26,16 @@ export class PropertyPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.isLoading = true;
-      this.propertiesService.getProperty(params['propertyId']).subscribe({
-        next: (response) => {
-          this.property = response.property;
-          this.loadSimilarProperties();
-        },
-        error: () => this.router.navigate(['/error404']),
-        complete: () => (this.isLoading = false),
-      });
+      this.propertySubs = this.propertiesService
+        .getProperty(params['propertyId'])
+        .subscribe({
+          next: (response) => {
+            this.property = response.property;
+            this.loadSimilarProperties();
+          },
+          error: () => this.router.navigate(['/error404']),
+          complete: () => (this.isLoading = false),
+        });
     });
   }
 

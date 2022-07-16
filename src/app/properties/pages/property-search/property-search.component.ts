@@ -32,14 +32,16 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.currentPage = +params['page'] || 1;
 
-      this.propertiesService.getPropertiesCount({ ...params }).subscribe({
-        next: ({ numberOfProperties }) => {
-          const divideBy: number = +params['limit'] || 6;
-          this.totalPages = Math.ceil(numberOfProperties / divideBy);
-        },
-      });
+      this.propertiesCountSubs = this.propertiesService
+        .getPropertiesCount({ ...params })
+        .subscribe({
+          next: ({ numberOfProperties }) => {
+            const divideBy: number = +params['limit'] || 6;
+            this.totalPages = Math.ceil(numberOfProperties / divideBy);
+          },
+        });
 
-      this.propertiesService
+      this.propertiesSubs = this.propertiesService
         .getProperties({ ...params, page: params['page'] || 1 })
         .subscribe({
           next: (responseData) => (this.properties = responseData.properties),
