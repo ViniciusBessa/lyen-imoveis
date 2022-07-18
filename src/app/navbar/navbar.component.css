@@ -105,10 +105,11 @@
   .container {
     align-items: flex-start;
     gap: 8px;
-    height: 55vh;
+    height: 300px;
   }
 
   .container > *:last-child {
+    margin-top: auto;
     margin-left: 0;
   }
 
