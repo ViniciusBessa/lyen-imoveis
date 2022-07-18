@@ -74,6 +74,7 @@
   border-radius: 100px;
   background-color: transparent;
   color: var(--color-primary);
+  cursor: pointer;
   transition: background-color 300ms ease-in-out;
 }
 
@@ -91,6 +92,7 @@
   border-radius: 100px;
   background-color: transparent;
   color: var(--color-secondary);
+  cursor: pointer;
   transition: background-color 300ms ease-in-out;
 }
 
@@ -110,11 +112,12 @@
 @media only screen and (max-width: 600px) {
   .container {
     width: 100%;
+    padding: 8px;
   }
 
   .form {
     width: 100%;
-    padding: 8px;
+    padding: 12px;
   }
 
   .form__button-group {
