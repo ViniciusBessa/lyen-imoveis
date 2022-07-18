@@ -1,1 +1,111 @@
-<p>home works!</p>
+<div>
+  <div class="search">
+    <img
+      class="search__img"
+      width="600"
+      src="assets/images/jordan-bauer-Oo3b4wO1YXk-unsplash.jpg"
+    />
+    <form class="search__form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <h1>Encontre o imóvel ideal para você!</h1>
+      <div class="form__tabs">
+        <span (click)="onSetForSale()">Venda</span>
+        <span (click)="onSetForRent()">Aluguel</span>
+        <div
+          class="tabs__selected"
+          [ngClass]="{ 'tabs__selected--right': !forSale }"
+        ></div>
+      </div>
+      <hr class="form__divisor" />
+
+      <div class="form__section">
+        <div class="form__select-block">
+          <label class="form__label" for="city">Cidade</label>
+          <select
+            class="form__select form__select--big"
+            name="city"
+            formControlName="city"
+          >
+            <option value="">Todas</option>
+            <option [value]="city" *ngFor="let city of cities">
+              {{ city }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form__select-block" *ngIf="forSale">
+          <label class="form__label" for="price">Imóveis por até</label>
+          <select
+            class="form__select form__select--big"
+            name="price"
+            formControlName="price"
+          >
+            <option value="50000">R$ 50.000,00</option>
+            <option value="100000">R$ 100.000,00</option>
+            <option value="250000">R$ 250.000,00</option>
+            <option value="500000">R$ 500.000,00</option>
+            <option value="1000000">R$ 1.000.000,00</option>
+            <option value="5000000">R$ 5.000.000,00</option>
+            <option value="10000000">R$ 10.000.000,00</option>
+          </select>
+        </div>
+
+        <div class="form__select-block" *ngIf="!forSale">
+          <label class="form__label" for="price">Aluguel de até</label>
+          <select
+            class="form__select form__select--big"
+            name="price"
+            formControlName="price"
+          >
+            <option value="500">R$ 500,00 / mês</option>
+            <option value="1000">R$ 1.000,00 / mês</option>
+            <option value="2000">R$ 2.000,00 / mês</option>
+            <option value="5000">R$ 5.000,00 / mês</option>
+            <option value="10000">R$ 10.000,00 / mês</option>
+            <option value="50000">R$ 50.000,00 / mês</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form__section">
+        <div class="form__select-block">
+          <label class="form__label" for="numberBedrooms"
+            ><img
+              width="24"
+              height="auto"
+              src="assets/icons/iconmonstr-bed-1.png"
+            />Quartos</label
+          >
+          <select
+            class="form__select form__select--small"
+            name="numberBedrooms"
+            formControlName="numberBedrooms"
+          >
+            <option [value]="number" *ngFor="let number of [1, 2, 3, 4, 5]">
+              {{ number }}+
+            </option>
+          </select>
+        </div>
+
+        <div class="form__select-block">
+          <label class="form__label" for="numberBathrooms"
+            ><img
+              width="24"
+              height="auto"
+              src="assets/icons/bathroom-icon-0.jpg"
+            />Banheiros</label
+          >
+          <select
+            class="form__select form__select--small"
+            name="numberBathrooms"
+            formControlName="numberBathrooms"
+          >
+            <option [value]="number" *ngFor="let number of [1, 2, 3, 4, 5]">
+              {{ number }}+
+            </option>
+          </select>
+        </div>
+      </div>
+      <button class="form__submit-btn">Procurar imóveis</button>
+    </form>
+  </div>
+</div>

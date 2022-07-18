@@ -1,6 +1,6 @@
 export interface PropertyQuery {
   [key: string]: any;
-  announceType?: string;
+  announceType?: 'sale' | 'rent';
   numericFilters?: string;
   petAllowed?: boolean;
   hasGarage?: boolean;
