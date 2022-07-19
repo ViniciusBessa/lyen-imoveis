@@ -14,6 +14,43 @@
   />
   <div class="property__details">
     <h2 class="property__title">{{ property.title }}</h2>
+    <div class="property__icons">
+      <div class="icon-group">
+        <img
+          width="24"
+          height="auto"
+          src="assets/icons/iconmonstr-bed-1.png"
+          alt="Ícone de uma cama"
+        />
+        <span>{{ property.numberBedrooms }}</span>
+      </div>
+
+      <div class="icon-group">
+        <img
+          width="24"
+          height="auto"
+          src="assets/icons/bathroom-icon-0.jpg"
+          alt="Ícone de um toalete"
+        />
+        <span>{{ property.numberBathrooms }}</span>
+      </div>
+
+      <img
+        width="24"
+        height="auto"
+        src="assets/icons/iconmonstr-pet.png"
+        alt="Ícone da pata de um animal"
+        *ngIf="property.petAllowed"
+      />
+
+      <img
+        width="24"
+        height="auto"
+        src="assets/icons/iconmonstr-car-1.png"
+        alt="Ícone de um carro"
+        *ngIf="property.hasGarage"
+      />
+    </div>
     <p>{{ property.description }}</p>
     <p *ngIf="property.announceType === 'sale'">
       {{ property.price | currency: "BRL" }}

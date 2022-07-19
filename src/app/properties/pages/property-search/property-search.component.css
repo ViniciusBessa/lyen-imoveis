@@ -73,13 +73,23 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 12px;
-  border: 2px solid var(--color-primary);
-  border-radius: 80px;
-  background-color: var(--bg-secondary);
   width: 180px;
   margin: auto;
   padding: 12px 12px;
+}
+
+.pagination__arrow {
+  padding: 5px 10px;
+  background-color: transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 500ms ease-in-out;
+}
+
+.pagination__arrow--reverse {
+  transform: rotate(-180deg);
 }
 
 .pagination__link {
@@ -91,7 +101,9 @@
   transition: background-color 500ms ease-in-out;
 }
 
-.pagination__link--active, .pagination__link:hover {
+.pagination__link--active,
+.pagination__link:hover,
+.pagination__arrow:hover {
   background-color: #dadada;
 }
 

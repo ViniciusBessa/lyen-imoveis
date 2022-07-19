@@ -1,24 +1,11 @@
 <div class="container">
-  <div class="form__container-tab">
-    <span
-      class="form__tab"
-      [ngClass]="{ active: isLogin }"
-      (click)="isLogin = true"
-      >Entrar</span
-    >
-    <span
-      class="form__tab"
-      [ngClass]="{ active: !isLogin }"
-      (click)="isLogin = false"
-      >Cadastrar</span
-    >
-  </div>
   <form
     class="form"
     [formGroup]="registerForm"
     (ngSubmit)="onSubmit()"
     *ngIf="!isLogin"
   >
+    <h1 class="form__header">Cadastrar</h1>
     <label class="form__label" for="name" *ngIf="!isLogin"
       >Nome de usuário</label
     >
@@ -26,6 +13,7 @@
       class="form__control"
       name="name"
       type="text"
+      placeholder="Digite um nome de usuário"
       formControlName="name"
     />
     <p
@@ -65,6 +53,7 @@
       name="email"
       type="email"
       autocomplete="email"
+      placeholder="Digite o seu e-mail"
       formControlName="email"
     />
     <p
@@ -94,6 +83,7 @@
       name="password"
       type="password"
       autocomplete="new-password"
+      placeholder="Digite uma senha"
       formControlName="password"
     />
     <p
@@ -123,6 +113,9 @@
         Limpar
       </button>
     </div>
+    <a class="form__link" (click)="isLogin = true"
+      >Se você já possui uma conta, clique aqui</a
+    >
   </form>
 
   <form
@@ -131,12 +124,14 @@
     (ngSubmit)="onSubmit()"
     *ngIf="isLogin"
   >
+    <h1 class="form__header">Entrar</h1>
     <label class="form__label" for="email">E-mail</label>
     <input
       class="form__control"
       name="email"
       type="email"
       autocomplete="email"
+      placeholder="Digite o e-mail da sua conta"
       formControlName="email"
     />
     <p
@@ -166,6 +161,7 @@
       name="password"
       type="password"
       autocomplete="new-password"
+      placeholder="Digite a senha da sua conta"
       formControlName="password"
     />
     <p
@@ -195,6 +191,9 @@
         Limpar
       </button>
     </div>
+    <a class="form__link" (click)="isLogin = false">
+      Caso você não tenha uma conta, clique aqui
+    </a>
   </form>
 </div>
 

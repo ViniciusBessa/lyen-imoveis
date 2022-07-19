@@ -9,8 +9,8 @@
 }
 
 .property__img {
-  width: 200px;
-  height: 150px;
+  width: 300px;
+  height: 200px;
 }
 
 .property__details {
@@ -20,6 +20,22 @@
 
 .property__title {
   margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.property__icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.icon-group {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: #777676;
 }
 
 .property__buttons {
@@ -66,6 +82,10 @@
 
   .property__details {
     text-align: center;
+  }
+
+  .property__icons {
+    justify-content: center;
   }
 
   .property__buttons {

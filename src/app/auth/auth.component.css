@@ -17,28 +17,8 @@
   background-color: white;
 }
 
-.form__container-tab {
-  display: flex;
-  gap: 6px;
-}
-
-.form__tab {
-  padding: 8px;
-  border: 2px solid #e7e7e7;
-  border-radius: 10px 10px 0px 0px;
-  background-color: white;
-  cursor: pointer;
-}
-
-.form__tab:focus,
-.form__tab:hover,
-.form__tab:active {
-  opacity: 0.7;
-}
-
-.form__tab.active {
-  background-color: #f0f0f0;
-  opacity: 1;
+.form__header {
+  margin-top: 0;
 }
 
 .form__label {
@@ -50,7 +30,7 @@
   border: 2px solid gray;
   border-radius: 8px;
   padding: 0px 8px;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
 .form__control:focus {
@@ -106,7 +86,21 @@
 .form__button-group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
+}
+
+.form__link {
+  text-align: center;
+  color: var(--color-secondary);
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.form__link:focus,
+.form__link:hover,
+.form__link:active {
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 600px) {

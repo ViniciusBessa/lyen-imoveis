@@ -9,6 +9,7 @@
         <img
           class="dropdown__caret"
           src="assets/icons/iconmonstr-caret-down-filled.png"
+          alt="Ícone de uma seta para baixo"
         />
       </button>
       <div class="dropdown__content">
@@ -31,6 +32,17 @@
 </section>
 
 <div class="pagination" *ngIf="properties.length >= 1">
+  <img
+    class="pagination__arrow"
+    width="auto"
+    height="32"
+    src="assets/icons/iconmonstr-caret-left-filled.png"
+    alt="Imagem de uma seta para a esquerda"
+    [routerLink]="['/properties', 'search']"
+    [queryParams]="{ page: currentPage - 1 }"
+    queryParamsHandling="merge"
+    *ngIf="currentPage > 1"
+  />
   <a
     class="pagination__link"
     [routerLink]="['/properties', 'search']"
@@ -56,6 +68,18 @@
     *ngIf="currentPage + 1 < totalPages"
     >{{ totalPages }}</a
   >
+
+  <img
+    class="pagination__arrow pagination__arrow--reverse"
+    width="auto"
+    height="32"
+    src="assets/icons/iconmonstr-caret-left-filled.png"
+    alt="Imagem de uma seta para a direita"
+    [routerLink]="['/properties', 'search']"
+    [queryParams]="{ page: currentPage + 1 }"
+    queryParamsHandling="merge"
+    *ngIf="currentPage < totalPages"
+  />
 </div>
 
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
