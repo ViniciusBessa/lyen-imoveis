@@ -5,6 +5,8 @@ import { PropertyItemComponent } from './components/property-item/property-item.
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,13 +14,15 @@ import { ImageGalleryComponent } from './components/image-gallery/image-gallery.
     PropertyItemComponent,
     LoadingSpinnerComponent,
     ImageGalleryComponent,
+    SearchFormComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
     FavoriteComponent,
     PropertyItemComponent,
     LoadingSpinnerComponent,
     ImageGalleryComponent,
+    SearchFormComponent,
   ],
 })
 export class SharedModule {}

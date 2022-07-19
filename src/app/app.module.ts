@@ -20,6 +20,7 @@ import * as fromAuth from './auth/store/auth.effects';
 import * as fromUser from './user/store/user.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([fromAuth.AuthEffects, fromUser.UserEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
