@@ -37,6 +37,8 @@ export class FooterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.locationsCitiesSubs.unsubscribe();
+    if (this.locationsCitiesSubs) {
+      this.locationsCitiesSubs.unsubscribe();
+    }
   }
 }
