@@ -1,4 +1,4 @@
-<div class="property" [@property]>
+<div class="property" [@property] *ngIf="property">
   <img
     class="property__img"
     title="Foto de uma sala por Kara Eads"
@@ -19,7 +19,7 @@
       {{ property.price | currency: "BRL" }}
     </p>
     <p *ngIf="property.announceType === 'rent'">
-      {{ property.price | currency: "BRL" }} / Mês
+      {{ property.price | currency: "BRL" }} / mês
     </p>
   </div>
 

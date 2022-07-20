@@ -85,7 +85,7 @@
   color: var(--bg-primary);
 }
 
-.form__clear {
+.form__clear-btn {
   width: 120px;
   padding: 8px;
   border: 2px solid var(--color-secondary);
@@ -96,9 +96,9 @@
   transition: background-color 300ms ease-in-out;
 }
 
-.form__clear:focus,
-.form__clear:hover,
-.form__clear:active {
+.form__clear-btn:focus,
+.form__clear-btn:hover,
+.form__clear-btn:active {
   background-color: var(--color-secondary);
   color: var(--bg-primary);
 }

@@ -10,6 +10,7 @@ describe('PropertiesFilterComponent', () => {
   let component: PropertiesFilterComponent;
   let fixture: ComponentFixture<PropertiesFilterComponent>;
   let locationsService: LocationsService;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,6 +21,7 @@ describe('PropertiesFilterComponent', () => {
     fixture = TestBed.createComponent(PropertiesFilterComponent);
     component = fixture.componentInstance;
     locationsService = fixture.debugElement.injector.get(LocationsService);
+    compiled = fixture.nativeElement as HTMLElement;
     spyOn(locationsService, 'getStates').and.returnValue(
       new Observable((subscriber) =>
         subscriber.next({
@@ -57,7 +59,6 @@ describe('PropertiesFilterComponent', () => {
 
   it('should toggle the filters form display', () => {
     spyOn(component, 'onToggleFilters').and.callThrough();
-    const compiled = fixture.nativeElement as HTMLElement;
 
     // Clicking the toggle button
     const toggleBtn = compiled.querySelector(
@@ -88,7 +89,6 @@ describe('PropertiesFilterComponent', () => {
     spyOn(component, 'onSubmit').and.callThrough();
     component.onToggleFilters();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
 
     // Updating the form
     const filtersForm = component.filtersForm;
@@ -110,7 +110,6 @@ describe('PropertiesFilterComponent', () => {
     spyOn(component, 'onSubmit').and.callThrough();
     component.onToggleFilters();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
 
     // Updating the form
     const filtersForm = component.filtersForm;

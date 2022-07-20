@@ -5,6 +5,7 @@ import { ImageGalleryComponent } from './image-gallery.component';
 describe('ImageGalleryComponent', () => {
   let component: ImageGalleryComponent;
   let fixture: ComponentFixture<ImageGalleryComponent>;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -13,6 +14,7 @@ describe('ImageGalleryComponent', () => {
 
     fixture = TestBed.createComponent(ImageGalleryComponent);
     component = fixture.componentInstance;
+    compiled = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
 
@@ -21,7 +23,6 @@ describe('ImageGalleryComponent', () => {
   });
 
   it('should only display one selected image', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
     const selectedImages = compiled.querySelectorAll(
       '.image-gallery__selected'
     );
@@ -29,8 +30,6 @@ describe('ImageGalleryComponent', () => {
   });
 
   it('should display the placeholder image if no images were provided', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-
     // Getting the selected image
     const selectedImage = compiled.querySelector(
       '.image-gallery__selected'
@@ -41,7 +40,6 @@ describe('ImageGalleryComponent', () => {
   it('should display the provided images', () => {
     component.images = ['image1', 'image2', 'image3'];
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
 
     // Getting the selected image
     const selectedImage = compiled.querySelector(
@@ -61,7 +59,6 @@ describe('ImageGalleryComponent', () => {
     spyOn(component, 'onSelectImage').and.callThrough();
     component.images = ['image1', 'image2', 'image3'];
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
 
     // Getting the div containing all the images
     const imagesDiv = compiled.querySelector(

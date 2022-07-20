@@ -16,13 +16,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select('auth').subscribe((authData) => {
-      // Converting the user data to a boolean
       this.isLoggedIn = !!authData.user;
     });
   }
 
   onToggleNavbar(): void {
-    // Toggling the collapsed class
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 

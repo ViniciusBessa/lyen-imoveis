@@ -19,6 +19,7 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let locationsService: LocationsService;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,6 +36,7 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     locationsService = fixture.debugElement.injector.get(LocationsService);
+    compiled = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
 
@@ -44,7 +46,6 @@ describe('HomeComponent', () => {
 
   it('should navigate to the search page with the queryParam announceType set as sale', fakeAsync(
     inject([Location], (location: Location) => {
-      const compiled = fixture.nativeElement as HTMLElement;
       const navigateButton = compiled.querySelectorAll(
         '.box__btn'
       )[0] as HTMLButtonElement;
@@ -56,7 +57,6 @@ describe('HomeComponent', () => {
 
   it('should navigate to the search page with the queryParam announceType set as rent', fakeAsync(
     inject([Location], (location: Location) => {
-      const compiled = fixture.nativeElement as HTMLElement;
       const navigateButton = compiled.querySelectorAll(
         '.box__btn'
       )[1] as HTMLButtonElement;
@@ -68,7 +68,6 @@ describe('HomeComponent', () => {
 
   it('should navigate to the search page with the queryParam petAllowed set as true', fakeAsync(
     inject([Location], (location: Location) => {
-      const compiled = fixture.nativeElement as HTMLElement;
       const navigateButton = compiled.querySelectorAll(
         '.box__btn'
       )[2] as HTMLButtonElement;
@@ -112,7 +111,6 @@ describe('HomeComponent', () => {
     );
     component.ngOnInit();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
     const thirdAchievement = compiled.querySelectorAll(
       '.achievement'
     )[2] as HTMLSpanElement;

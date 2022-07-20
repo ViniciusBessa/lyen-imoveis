@@ -21,6 +21,7 @@ describe('PropertySearchComponent', () => {
   let component: PropertySearchComponent;
   let fixture: ComponentFixture<PropertySearchComponent>;
   let propertiesService: PropertiesService;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,6 +40,7 @@ describe('PropertySearchComponent', () => {
     fixture = TestBed.createComponent(PropertySearchComponent);
     component = fixture.componentInstance;
     propertiesService = fixture.debugElement.injector.get(PropertiesService);
+    compiled = fixture.nativeElement as HTMLElement;
     spyOn(propertiesService, 'getProperties').and.returnValue(
       new Observable((subscriber) =>
         subscriber.next({
@@ -148,7 +150,6 @@ describe('PropertySearchComponent', () => {
 
   it('should navigate to the second page', fakeAsync(
     inject([Location], (location: Location) => {
-      const compiled = fixture.nativeElement as HTMLElement;
       const paginationLink = compiled.querySelectorAll(
         '.pagination__link'
       )[1] as HTMLAnchorElement;
@@ -162,7 +163,6 @@ describe('PropertySearchComponent', () => {
 
   it('should change the properties sort', fakeAsync(
     inject([Location], (location: Location) => {
-      const compiled = fixture.nativeElement as HTMLElement;
       const dropdownItem = compiled.querySelectorAll(
         '.dropdown__item'
       )[1] as HTMLParagraphElement;

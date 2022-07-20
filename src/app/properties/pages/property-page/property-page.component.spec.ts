@@ -1,4 +1,4 @@
-import { CurrencyPipe, formatCurrency } from '@angular/common';
+import { formatCurrency } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -13,6 +13,7 @@ describe('PropertyPageComponent', () => {
   let component: PropertyPageComponent;
   let fixture: ComponentFixture<PropertyPageComponent>;
   let propertiesService: PropertiesService;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,6 +25,7 @@ describe('PropertyPageComponent', () => {
     fixture = TestBed.createComponent(PropertyPageComponent);
     component = fixture.componentInstance;
     propertiesService = fixture.debugElement.injector.get(PropertiesService);
+    compiled = fixture.nativeElement as HTMLElement;
     spyOn(propertiesService, 'getProperty').and.returnValue(
       new Observable((subscriber) =>
         subscriber.next({
@@ -61,7 +63,6 @@ describe('PropertyPageComponent', () => {
   });
 
   it('should display the property informations', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
     const property = component.property;
     expect(compiled.textContent).toContain(property.title);
     expect(compiled.textContent).toContain(property.location.state);

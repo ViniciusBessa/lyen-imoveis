@@ -19,6 +19,7 @@ describe('SearchFormComponent', () => {
   let component: SearchFormComponent;
   let fixture: ComponentFixture<SearchFormComponent>;
   let locationsService: LocationsService;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,6 +36,7 @@ describe('SearchFormComponent', () => {
     fixture = TestBed.createComponent(SearchFormComponent);
     component = fixture.componentInstance;
     locationsService = fixture.debugElement.injector.get(LocationsService);
+    compiled = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
 
@@ -71,7 +73,6 @@ describe('SearchFormComponent', () => {
 
   it('should fail to submit the form', () => {
     spyOn(component, 'onSubmit').and.callThrough();
-    const compiled = fixture.nativeElement as HTMLElement;
     const searchForm = component.searchForm;
 
     // Setting invalid values
