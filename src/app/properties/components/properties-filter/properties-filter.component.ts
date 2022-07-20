@@ -33,11 +33,17 @@ export class PropertiesFilterComponent implements OnInit, OnDestroy {
 
     this.locationStatesSubs = this.locationsService
       .getStates()
-      .subscribe({ next: ({ states }) => (this.states = states) });
+      .subscribe({
+        next: ({ states }) => (this.states = states),
+        error: () => (this.states = []),
+      });
 
     this.locationCitiesSubs = this.locationsService
       .getCities()
-      .subscribe({ next: ({ cities }) => (this.cities = cities) });
+      .subscribe({
+        next: ({ cities }) => (this.cities = cities),
+        error: () => (this.cities = []),
+      });
 
     this.filtersFormSubs = this.filtersForm.valueChanges.subscribe(() => {
       const minPriceControl = <FormControl>this.filtersForm.get('minPrice');

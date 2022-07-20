@@ -24,7 +24,10 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.locationsSubs = this.locationsService
       .getCities()
-      .subscribe({ next: ({ cities }) => (this.cities = cities) });
+      .subscribe({
+        next: ({ cities }) => (this.cities = cities),
+        error: () => (this.cities = []),
+      });
 
     this.initForm();
   }

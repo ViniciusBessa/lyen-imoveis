@@ -41,9 +41,9 @@ export class FavoriteComponent implements OnInit, OnDestroy {
   }
 
   onAddToFavorites(): void {
-    if (this.isLoggedIn) {
+    if (this.isLoggedIn && !this.isFavorited) {
       this.store.dispatch(UserActions.addFavorite({ property: this.property }));
-    } else {
+    } else if (!this.isLoggedIn) {
       this.router.navigate(['/auth'], {
         queryParams: { next: this.router.url },
       });
@@ -51,11 +51,11 @@ export class FavoriteComponent implements OnInit, OnDestroy {
   }
 
   onRemoveFromFavorites(): void {
-    if (this.isLoggedIn) {
+    if (this.isLoggedIn && this.isFavorited) {
       this.store.dispatch(
         UserActions.removeFavorite({ property: this.property })
       );
-    } else {
+    } else if (!this.isLoggedIn) {
       this.router.navigate(['/auth'], {
         queryParams: { next: this.router.url },
       });
