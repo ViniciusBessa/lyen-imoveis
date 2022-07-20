@@ -1,10 +1,50 @@
-<div class="container">
-  <a href="https://github.com/ViniciusBessa/lyen-imoveis" target="_blank"
-    ><img
-      class="img"
-      src="assets/icons/iconmonstr-github.png"
-      alt="Logo do github"
-      width="70"
-      height="auto"
-  /></a>
+<div class="footer">
+  <div class="footer__column">
+    <h4>Encontre imóveis</h4>
+    <a
+      class="footer__link"
+      [routerLink]="['/properties', 'search']"
+      [queryParams]="{ announceType: 'rent' }"
+      >Aluguel</a
+    >
+    <a
+      class="footer__link"
+      [routerLink]="['/properties', 'search']"
+      [queryParams]="{ announceType: 'sale' }"
+      >Venda</a
+    >
+    <a
+      class="footer__link"
+      [routerLink]="['/properties', 'search']"
+      [queryParams]="{ hasGarage: true }"
+      >Possuem garagem</a
+    >
+    <a
+      class="footer__link"
+      [routerLink]="['/properties', 'search']"
+      [queryParams]="{ petAllowed: true }"
+      >Permitem pets</a
+    >
+  </div>
+
+  <div class="footer__column">
+    <h4>Cidades mais populares</h4>
+    <a
+      class="footer__link"
+      [routerLink]="['/properties', 'search']"
+      [queryParams]="{ city }"
+      *ngFor="let city of cities"
+      >{{ city }}</a
+    >
+  </div>
+
+  <div class="footer__column">
+    <h4>Empresa</h4>
+    <a class="footer__link" [routerLink]="['/about']">Sobre nós</a>
+    <a class="footer__link" [routerLink]="['/contact']">Fale conosco</a>
+  </div>
+
+  <div class="footer__column">
+    <h2 class="footer__brand" [routerLink]="['/home']">Lyen Imóveis</h2>
+  </div>
 </div>

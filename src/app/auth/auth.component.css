@@ -4,7 +4,7 @@
   margin: auto;
   width: fit-content;
   min-height: 60vh;
-  padding-top: 4vh;
+  padding: 64px 8px;
 }
 
 .form {
@@ -106,7 +106,7 @@
 @media only screen and (max-width: 600px) {
   .container {
     width: 100%;
-    padding: 8px;
+    padding: 48px 8px;
   }
 
   .form {

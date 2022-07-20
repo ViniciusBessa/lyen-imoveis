@@ -60,15 +60,6 @@
     *ngIf="currentPage < totalPages"
     >{{ currentPage + 1 }}</a
   >
-  <a
-    class="pagination__link"
-    [routerLink]="['/properties', 'search']"
-    [queryParams]="{ page: totalPages }"
-    queryParamsHandling="merge"
-    *ngIf="currentPage + 1 < totalPages"
-    >{{ totalPages }}</a
-  >
-
   <img
     class="pagination__arrow pagination__arrow--reverse"
     width="auto"
