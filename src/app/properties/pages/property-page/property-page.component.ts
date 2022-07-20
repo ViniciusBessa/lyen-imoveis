@@ -12,7 +12,6 @@ import { PropertiesService } from '../../properties.service';
 export class PropertyPageComponent implements OnInit, OnDestroy {
   property!: Property;
   similarProperties: Property[] = [];
-  isFavorited: boolean = false;
   isLoading: boolean = false;
 
   private propertySubs!: Subscription;

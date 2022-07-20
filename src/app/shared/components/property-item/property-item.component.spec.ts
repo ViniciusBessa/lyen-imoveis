@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FavoriteComponent } from '../favorite/favorite.component';
 
 import { PropertyItemComponent } from './property-item.component';
 
@@ -8,9 +9,8 @@ describe('PropertyItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PropertyItemComponent ]
-    })
-    .compileComponents();
+      declarations: [PropertyItemComponent, FavoriteComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PropertyItemComponent);
     component = fixture.componentInstance;

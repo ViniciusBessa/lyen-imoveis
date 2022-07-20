@@ -23,13 +23,11 @@ export class PropertiesService {
   }
 
   getPropertiesCount(filters: PropertyQuery): Observable<{
-    properties: Property[];
     numberOfProperties: number;
   }> {
     let httpParams = this.createHttpParams(filters);
     httpParams = httpParams.delete('page');
     return this.http.get<{
-      properties: Property[];
       numberOfProperties: number;
     }>(`${environment.apiUrl}/properties`, { params: httpParams });
   }

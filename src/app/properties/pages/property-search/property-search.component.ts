@@ -57,7 +57,7 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
   }
 
   onFiltersUpdate(filters: PropertyQuery): void {
-    this.router.navigate(['.'], {
+    this.router.navigate(['/properties', 'search'], {
       relativeTo: this.route,
       queryParams: { ...filters, page: null },
       queryParamsHandling: 'merge',
@@ -65,8 +65,8 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
   }
 
   onSetSorting(event: any, sort: string | null): void {
-    this.sortingText = event.target.outerText;
-    this.router.navigate(['.'], {
+    this.sortingText = (<string>event.target.outerText).trim();
+    this.router.navigate(['/properties', 'search'], {
       relativeTo: this.route,
       queryParams: { sort, page: null },
       queryParamsHandling: 'merge',
