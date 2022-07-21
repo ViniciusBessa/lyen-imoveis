@@ -21,6 +21,9 @@ import * as fromUser from './user/store/user.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { SharedModule } from './shared/shared.module';
     HomeComponent,
     AuthComponent,
     Error404Component,
+    AboutComponent,
+    ContactComponent,
+    CookiesAlertComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,122 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 24px 36px;
+  background-color: var(--bg-secondary);
+}
+
+.paragraph {
+  color: #777676;
+}
+
+.history {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 48px;
+}
+
+.history > * {
+  width: 40%;
+}
+
+.history__header {
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.history__tag {
+  position: relative;
+  top: 8px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.achievements {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 48px;
+  padding: 24px;
+  min-height: 300px;
+}
+
+.achievements__header {
+  text-align: center;
+  width: 100%;
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.achievement {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.achievement > * {
+  margin: 0;
+}
+
+.achievement > h2 {
+  color: var(--color-primary);
+}
+
+.achievement > p {
+  color: #777676;
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+
+.team__img {
+  width: 45%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.team__info {
+  width: 40%;
+}
+
+.team__header {
+  color: var(--color-primary);
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    gap: 12px;
+  }
+  
+  .history {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0px 12px;
+  }
+
+  .history > * {
+    width: 100%;
+  }
+
+  .team {
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .team__img,
+  .team__info {
+    width: 100%;
+  }
+
+  .achievements__header {
+    margin-bottom: 0;
+  }
+}

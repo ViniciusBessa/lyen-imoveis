@@ -1,0 +1,118 @@
+<section class="container">
+  <div class="container container--column">
+    <h2>Informações</h2>
+    <p>
+      Nos contate caso você tenha alguma dúvida ou sugestão para melhorarmos o
+      nosso serviço. Nós entraremos em contato para passar todas as informações
+      necessárias, o mais rápido possível.
+    </p>
+    <div class="icon-group">
+      <img
+        width="32"
+        height="auto"
+        src="assets/icons/iconmonstr-whatsapp-4.png"
+      />
+      <p>(11) 99999-9999</p>
+    </div>
+    <div class="icon-group">
+      <img width="32" height="auto" src="assets/icons/iconmonstr-email-3.png" />
+      <p>contato@lyenimoveis.com</p>
+    </div>
+    <div class="icon-group">
+      <img width="32" height="auto" src="assets/icons/iconmonstr-time-18.png" />
+      <p>Seg - Sáb 8:00 - 18:00</p>
+    </div>
+  </div>
+  <div class="container container--column">
+    <h2>Entre em contato</h2>
+    <form class="form" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <!--Name Field-->
+      <input class="form__input" placeholder="Nome" formControlName="name" />
+      <p
+        class="form__alert"
+        *ngIf="
+          messageForm.get('name')!.touched &&
+          messageForm.get('name')!.errors &&
+          messageForm.get('name')!.errors!['required']
+        "
+      >
+        Por favor, informe um nome
+      </p>
+      <p
+        class="form__alert"
+        *ngIf="
+          messageForm.get('name')!.touched &&
+          messageForm.get('name')!.errors &&
+          messageForm.get('name')!.errors!['minlength']
+        "
+      >
+        O nome deve ter pelo menos 6 caracteres
+      </p>
+      <p
+        class="form__alert"
+        *ngIf="
+          messageForm.get('name')!.touched &&
+          messageForm.get('name')!.errors &&
+          messageForm.get('name')!.errors!['maxlength']
+        "
+      >
+        O nome só pode ter até 20 caracteres
+      </p>
+
+      <!--Email Field-->
+      <input class="form__input" placeholder="E-mail" formControlName="email" />
+      <p
+        class="form__alert"
+        *ngIf="
+          messageForm.get('email')!.touched &&
+          messageForm.get('email')!.errors &&
+          messageForm.get('email')!.errors!['required']
+        "
+      >
+        Por favor, informe um e-mail
+      </p>
+      <p
+        class="form__alert"
+        *ngIf="
+          messageForm.get('email')!.touched &&
+          messageForm.get('email')!.errors &&
+          messageForm.get('email')!.errors!['email']
+        "
+      >
+        Por favor, informe um e-mail válido
+      </p>
+
+      <!--Message-->
+      <textarea
+        class="form__textarea"
+        placeholder="Mensagem"
+        formControlName="message"
+      ></textarea>
+      <p
+        class="form__alert"
+        *ngIf="
+          messageForm.get('message')!.touched &&
+          messageForm.get('message')!.errors &&
+          messageForm.get('message')!.errors!['required']
+        "
+      >
+        Por favor, digite uma mensagem
+      </p>
+      <p
+        class="form__alert"
+        *ngIf="
+          messageForm.get('message')!.touched &&
+          messageForm.get('message')!.errors &&
+          messageForm.get('message')!.errors!['minlength']
+        "
+      >
+        A mensagem deve ter pelo menos 10 caracteres
+      </p>
+      <button class="form__submit-btn">Enviar mensagem</button>
+    </form>
+  </div>
+
+  <span class="alert" [@alert] *ngIf="showAlert"
+    >Mensagem enviada com sucesso!</span
+  >
+</section>

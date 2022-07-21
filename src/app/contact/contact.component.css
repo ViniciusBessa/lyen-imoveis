@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  padding: 28px 48px;
+  background-color: var(--bg-secondary);
+}
+
+.container--column {
+  flex-direction: column;
+  padding: 12px 24px;
+}
+
+.icon-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.alert {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px;
+  border: 2px solid green;
+  color: green;
+  background-color: var(--bg-secondary);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 40vw;
+}
+
+.form__alert {
+  margin: 0px 0px 2px 18px;
+  color: gray;
+  font-size: 0.9rem;
+}
+
+.form__input {
+  border: 1px solid black;
+  border-radius: 24px;
+  padding: 12px 18px;
+  background-color: var(--bg-secondary);
+}
+
+.form__input.ng-invalid.ng-touched,
+.form__textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.form__textarea {
+  resize: vertical;
+  border-radius: 8px;
+  padding: 12px 18px;
+  min-height: 120px;
+  background-color: var(--bg-secondary);
+}
+
+.form__submit-btn {
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  color: var(--bg-secondary);
+  height: 48px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.form__submit-btn:hover {
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 4px 8px;
+  }
+
+  .form {
+    width: 100%;
+  }
+}

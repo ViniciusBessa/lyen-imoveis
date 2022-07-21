@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
 import { AuthComponent } from './auth/auth.component';
+import { ContactComponent } from './contact/contact.component';
 import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './home/home.component';
 import { LoginRequiredGuard } from './shared/guards/login-required.guard';
@@ -9,6 +11,8 @@ import { LogoutRequiredGuard } from './shared/guards/logout-required.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   {
     path: 'auth',
     component: AuthComponent,
