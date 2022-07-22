@@ -90,8 +90,12 @@
   gap: 8px;
 }
 
-.form__link {
+.form__paragraph {
+  margin-bottom: 0;
   text-align: center;
+}
+
+.form__link {
   color: var(--color-secondary);
   margin-top: 12px;
   cursor: pointer;

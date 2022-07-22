@@ -137,15 +137,4 @@ describe('FooterComponent', () => {
       expect(location.path()).toEqual('/properties/search?city=Sorocaba');
     })
   ));
-
-  it('should navigate to the home page', fakeAsync(
-    inject([Location], (location: Location) => {
-      const footerBrand = compiled.querySelector(
-        '.footer__brand'
-      ) as HTMLAnchorElement;
-      footerBrand.click();
-      tick();
-      expect(location.path()).toEqual('/home');
-    })
-  ));
 });

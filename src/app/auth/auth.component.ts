@@ -83,4 +83,9 @@ export class AuthComponent implements OnInit {
     this.registerForm.reset();
     this.loginForm.reset();
   }
+
+  onSwitchForm(): void {
+    this.isLogin = !this.isLogin;
+    this.onClearForms();
+  }
 }

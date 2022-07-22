@@ -113,9 +113,10 @@
         Limpar
       </button>
     </div>
-    <a class="form__link" (click)="isLogin = true"
-      >Se você já possui uma conta, clique aqui</a
-    >
+    <p class="form__paragraph">
+      Já possui uma conta?
+      <a class="form__link" (click)="onSwitchForm()">Clique aqui</a>
+    </p>
   </form>
 
   <form
@@ -191,9 +192,10 @@
         Limpar
       </button>
     </div>
-    <a class="form__link" (click)="isLogin = false">
-      Caso você não tenha uma conta, clique aqui
-    </a>
+    <p class="form__paragraph">
+      Você não tem uma conta?
+      <a class="form__link" (click)="onSwitchForm()">Clique aqui</a>
+    </p>
   </form>
 </div>
 

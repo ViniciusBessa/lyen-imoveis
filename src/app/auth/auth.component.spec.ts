@@ -57,6 +57,17 @@ describe('AuthComponent', () => {
     expect(forms.length).toEqual(1);
   });
 
+  it('should switch from loginForm to registerForm', fakeAsync(() => {
+    spyOn(component, 'onSwitchForm').and.callThrough();
+
+    // Clicking the form link, that calls onSwitchForm
+    const formLink = compiled.querySelector('.form__link') as HTMLAnchorElement;
+    formLink.click();
+    tick();
+    expect(component.isLogin).toBeFalse();
+    expect(component.onSwitchForm).toHaveBeenCalled();
+  }));
+
   it('should fail to submit the login form', fakeAsync(() => {
     spyOn(component, 'onSubmit');
 
