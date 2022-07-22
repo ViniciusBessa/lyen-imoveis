@@ -1,13 +1,23 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 24px;
   padding: 24px 36px;
   background-color: var(--bg-secondary);
 }
 
 .paragraph {
   color: #777676;
+}
+
+.img {
+  width: 70%;
+  margin: auto;
+}
+
+.section-divisor {
+  border: 1px solid #dfd9d9;
+  width: 100%;
 }
 
 .history {
@@ -93,7 +103,11 @@
   .container {
     gap: 12px;
   }
-  
+
+  .img {
+    width: 100%;
+  }
+
   .history {
     flex-direction: column;
     gap: 8px;
