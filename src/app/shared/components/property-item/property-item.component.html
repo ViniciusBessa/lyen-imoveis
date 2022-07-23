@@ -56,7 +56,7 @@
       {{ property.price | currency: "BRL" }}
     </p>
     <p *ngIf="property.announceType === 'rent'">
-      {{ property.price | currency: "BRL" }} / mês
+      {{ property.price * 0.01 | currency: "BRL" }} / mês
     </p>
   </div>
 
