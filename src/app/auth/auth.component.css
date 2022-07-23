@@ -18,7 +18,15 @@
 }
 
 .form__header {
-  margin-top: 0;
+  margin: 0;
+}
+
+.form__error {
+  border: 2px solid #7f0909;
+  border-radius: 8px;
+  color: #7f0909;
+  background-color: #ee9393;
+  padding: 8px 12px;
 }
 
 .form__label {

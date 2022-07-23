@@ -66,10 +66,12 @@ export class AuthComponent implements OnInit {
 
   onSubmit(): void {
     if (this.isLogin && this.loginForm.valid) {
+      this.store.dispatch(AuthActions.resetError());
       this.store.dispatch(
         AuthActions.loginStart({ ...this.loginForm.value, next: this.nextPage })
       );
     } else if (!this.isLogin && this.registerForm.valid) {
+      this.store.dispatch(AuthActions.resetError());
       this.store.dispatch(
         AuthActions.registerStart({
           ...this.registerForm.value,
@@ -82,6 +84,7 @@ export class AuthComponent implements OnInit {
   onClearForms(): void {
     this.registerForm.reset();
     this.loginForm.reset();
+    this.store.dispatch(AuthActions.resetError());
   }
 
   onSwitchForm(): void {

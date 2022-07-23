@@ -6,6 +6,7 @@
     *ngIf="!isLogin"
   >
     <h1 class="form__header">Cadastrar</h1>
+    <span class="form__error" *ngIf="error">{{ error.message }}</span>
     <label class="form__label" for="name" *ngIf="!isLogin"
       >Nome de usuário</label
     >
@@ -126,6 +127,7 @@
     *ngIf="isLogin"
   >
     <h1 class="form__header">Entrar</h1>
+    <span class="form__error" *ngIf="error">{{ error.message }}</span>
     <label class="form__label" for="email">E-mail</label>
     <input
       class="form__control"
