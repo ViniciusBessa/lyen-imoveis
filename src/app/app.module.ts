@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
@@ -24,6 +25,9 @@ import { SharedModule } from './shared/shared.module';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt)
 
 @NgModule({
   declarations: [
@@ -50,6 +54,7 @@ import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent],
 })

@@ -1,6 +1,6 @@
 .property {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   border: 2px solid #dfd9d9;
   border-radius: 8px;
   padding: 12px;
@@ -9,14 +9,22 @@
 }
 
 .property__img {
-  width: 300px;
-  height: 200px;
+  width: 350px;
+  height: 250px;
   flex-shrink: 0;
 }
 
 .property__details {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.property__details > *:last-child {
+  margin-top: auto;
 }
 
 .property__title {
@@ -39,13 +47,34 @@
   color: #777676;
 }
 
+.property__location {
+  color: #777676;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.property__description {
+  color: #777676;
+}
+
+.property__price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.property__price--month {
+  font-weight: initial;
+  font-size: 0.9rem;
+}
+
 .property__buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 24px;
-  padding: 24px;
+  padding-right: 12px;
   margin-left: auto;
   flex-shrink: 0;
 }
@@ -71,49 +100,30 @@
   .property {
     flex-direction: column;
     align-items: center;
-    gap: 0;
-    padding: 4px;
-    width: 200px;
-    min-height: 400px;
-  }
-
-  .property__img {
-    width: 150px;
-    height: 100px;
-  }
-
-  .property__details {
-    text-align: center;
-  }
-
-  .property__icons {
-    justify-content: center;
-  }
-
-  .property__buttons {
-    gap: 0;
-    padding: 4px;
-    margin-left: 0;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .property {
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+    gap: 4px;
     padding: 12px;
     width: 90vw;
     min-height: 400px;
   }
 
   .property__img {
-    width: 150px;
-    height: 100px;
+    width: 90%;
+    height: auto;
   }
 
   .property__details {
+    flex-wrap: wrap;
     text-align: center;
+    gap: 12px;
+    white-space: pre-wrap;
+  }
+
+  .property__description {
+    display: none;
+  }
+
+  .property__icons {
+    justify-content: center;
   }
 
   .property__buttons {

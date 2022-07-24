@@ -4,16 +4,13 @@
     title="Foto de uma sala por Kara Eads"
     alt="Foto de uma sala por Kara Eads"
     src="assets/images/placeholder_house.jpg"
-    *ngIf="property.images.length === 0"
   />
-  <img
-    class="property__img"
-    alt="Foto de uma casa"
-    [src]="property.images[0]"
-    *ngIf="property.images.length >= 1"
-  />
+
   <div class="property__details">
     <h2 class="property__title">{{ property.title }}</h2>
+    <p class="property__location">
+      {{ property.location.city }} - {{ property.location.state }}
+    </p>
     <div class="property__icons">
       <div class="icon-group">
         <img
@@ -51,12 +48,13 @@
         *ngIf="property.hasGarage"
       />
     </div>
-    <p>{{ property.description }}</p>
-    <p *ngIf="property.announceType === 'sale'">
+    <p class="property__description">{{ property.description }}</p>
+    <p class="property__price" *ngIf="property.announceType === 'sale'">
       {{ property.price | currency: "BRL" }}
     </p>
-    <p *ngIf="property.announceType === 'rent'">
-      {{ property.price * 0.01 | currency: "BRL" }} / mês
+    <p class="property__price" *ngIf="property.announceType === 'rent'">
+      {{ property.price * 0.01 | currency: "BRL" }}
+      <span class="property__price--month">/ mês</span>
     </p>
   </div>
 

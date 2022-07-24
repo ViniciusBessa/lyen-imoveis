@@ -7,11 +7,12 @@
     <div>
       <h1>{{ property.title }}</h1>
       <h3>{{ property.location.city }} - {{ property.location.state }}</h3>
-      <p *ngIf="property.announceType === 'sale'">
+      <p class="property__price" *ngIf="property.announceType === 'sale'">
         {{ property.price | currency: "BRL" }}
       </p>
-      <p *ngIf="property.announceType === 'rent'">
-        {{ property.price * 0.01 | currency: "BRL" }} / mês
+      <p class="property__price" *ngIf="property.announceType === 'rent'">
+        {{ property.price * 0.01 | currency: "BRL" }}
+        <span class="property__price--month">/ mês</span>
       </p>
       <div class="container container--center-content">
         <button class="button">Entrar em contato</button>
