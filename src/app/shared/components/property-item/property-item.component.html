@@ -4,6 +4,13 @@
     title="Foto de uma sala por Kara Eads"
     alt="Foto de uma sala por Kara Eads"
     src="assets/images/placeholder_house.jpg"
+    *ngIf="property.images.length === 0"
+  />
+  <img
+    class="property__img"
+    alt="Foto de uma casa"
+    [src]="property.images[0]"
+    *ngIf="property.images.length >= 1"
   />
 
   <div class="property__details">
