@@ -31,19 +31,15 @@ export class PropertiesFilterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initForm();
 
-    this.locationStatesSubs = this.locationsService
-      .getStates()
-      .subscribe({
-        next: ({ states }) => (this.states = states),
-        error: () => (this.states = []),
-      });
+    this.locationStatesSubs = this.locationsService.getStates().subscribe({
+      next: ({ states }) => (this.states = states),
+      error: () => (this.states = []),
+    });
 
-    this.locationCitiesSubs = this.locationsService
-      .getCities()
-      .subscribe({
-        next: ({ cities }) => (this.cities = cities),
-        error: () => (this.cities = []),
-      });
+    this.locationCitiesSubs = this.locationsService.getCities().subscribe({
+      next: ({ cities }) => (this.cities = cities),
+      error: () => (this.cities = []),
+    });
 
     this.filtersFormSubs = this.filtersForm.valueChanges.subscribe(() => {
       const minPriceControl = <FormControl>this.filtersForm.get('minPrice');
@@ -95,14 +91,26 @@ export class PropertiesFilterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.filtersForm.valid) {
+      const announceType = this.filtersForm.value.announceType;
+
+      // If the user is searching for houses for rent, multiply minPrice and MaxPrice by 100
+      const minPrice =
+        announceType == 'sale'
+          ? this.filtersForm.value.minPrice
+          : this.filtersForm.value.minPrice * 100;
+      const maxPrice =
+        announceType == 'sale'
+          ? this.filtersForm.value.maxPrice
+          : this.filtersForm.value.maxPrice * 100;
+
       const numericFilters = [
-        `price>=${this.filtersForm.value.minPrice}`,
-        `price<=${this.filtersForm.value.maxPrice}`,
+        `price>=${minPrice}`,
+        `price<=${maxPrice}`,
         `numberBedrooms>=${this.filtersForm.value.numberBedrooms}`,
         `numberBathrooms>=${this.filtersForm.value.numberBathrooms}`,
       ];
       const propertyQuery: PropertyQuery = {
-        announceType: this.filtersForm.value.announceType,
+        announceType,
         state: this.filtersForm.value.state,
         city: this.filtersForm.value.city,
         numericFilters: numericFilters.join(','),

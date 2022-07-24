@@ -11,6 +11,7 @@
 .property__img {
   width: 300px;
   height: 200px;
+  flex-shrink: 0;
 }
 
 .property__details {
@@ -46,6 +47,7 @@
   gap: 24px;
   padding: 24px;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .property__page-btn {

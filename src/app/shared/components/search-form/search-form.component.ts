@@ -22,12 +22,10 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.locationsSubs = this.locationsService
-      .getCities()
-      .subscribe({
-        next: ({ cities }) => (this.cities = cities),
-        error: () => (this.cities = []),
-      });
+    this.locationsSubs = this.locationsService.getCities().subscribe({
+      next: ({ cities }) => (this.cities = cities),
+      error: () => (this.cities = []),
+    });
 
     this.initForm();
   }
@@ -70,8 +68,15 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.searchForm.valid) {
       const city = this.searchForm.value.city;
+      const announceType = this.forSale ? 'sale' : 'rent';
+
+      // If the user is searching for houses for rent, multiply the price by 100
+      const price =
+        announceType == 'sale'
+          ? this.searchForm.value.price
+          : this.searchForm.value.price * 100;
       const numericFilters = [
-        `price<=${this.searchForm.value.price}`,
+        `price<=${price}`,
         `numberBedrooms>=${this.searchForm.value.numberBedrooms}`,
         `numberBathrooms>=${this.searchForm.value.numberBathrooms}`,
       ];
@@ -79,7 +84,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
         queryParams: {
           city,
           numericFilters: numericFilters.join(','),
-          announceType: this.forSale ? 'sale' : 'rent',
+          announceType,
         },
       });
     }
