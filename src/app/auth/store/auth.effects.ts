@@ -103,13 +103,14 @@ export class AuthEffects {
     )
   );
 
-  authLogout = createEffect(
-    () =>
-      this.$actions.pipe(
-        ofType(AuthActions.logoutUser),
-        tap(() => this.router.navigate(['/home']))
-      ),
-    { dispatch: false }
+  authLogout = createEffect(() =>
+    this.$actions.pipe(
+      ofType(AuthActions.logoutUser),
+      map(() => {
+        this.router.navigate(['/home']);
+        return UserActions.setFavorites({ properties: [] });
+      })
+    )
   );
 
   authAutoLogin = createEffect(() =>
