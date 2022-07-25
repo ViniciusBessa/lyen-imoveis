@@ -10,13 +10,18 @@ import { LogoutRequiredGuard } from './shared/guards/logout-required.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
+  { path: 'home', component: HomeComponent, data: { title: 'Home' } },
+  { path: 'about', component: AboutComponent, data: { title: 'Sobre nós' } },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    data: { title: 'Fale conosco' },
+  },
   {
     path: 'auth',
     component: AuthComponent,
     canActivate: [LogoutRequiredGuard],
+    data: { title: 'Entrar' },
   },
   {
     path: 'properties',
@@ -34,6 +39,7 @@ const routes: Routes = [
   {
     path: '**',
     component: Error404Component,
+    data: { title: 'Página não encontrada' },
   },
 ];
 

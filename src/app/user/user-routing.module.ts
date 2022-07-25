@@ -6,6 +6,7 @@ const userRoutes: Routes = [
   {
     path: 'favorites',
     component: UserFavoritesComponent,
+    data: { title: 'Meus favoritos' },
   },
 ];
 

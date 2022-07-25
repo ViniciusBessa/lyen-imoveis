@@ -4,8 +4,16 @@ import { PropertyPageComponent } from './pages/property-page/property-page.compo
 import { PropertySearchComponent } from './pages/property-search/property-search.component';
 
 const propertiesRoutes: Routes = [
-  { path: 'search', component: PropertySearchComponent },
-  { path: ':propertyId', component: PropertyPageComponent },
+  {
+    path: 'search',
+    component: PropertySearchComponent,
+    data: { title: 'Busca' },
+  },
+  {
+    path: ':propertyId',
+    component: PropertyPageComponent,
+    data: { title: 'Imóvel' },
+  },
 ];
 
 @NgModule({
