@@ -1,4 +1,6 @@
-import { formatCurrency, Location } from '@angular/common';
+import { formatCurrency, Location, registerLocaleData } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
 import {
   ComponentFixture,
   fakeAsync,
@@ -20,6 +22,9 @@ describe('PropertyItemComponent', () => {
   let compiled: HTMLElement;
 
   beforeEach(async () => {
+    // Configuring the locale
+    registerLocaleData(localePt);
+
     await TestBed.configureTestingModule({
       declarations: [PropertyItemComponent, FavoriteComponent],
       imports: [
@@ -28,7 +33,10 @@ describe('PropertyItemComponent', () => {
         ]),
         NoopAnimationsModule,
       ],
-      providers: [provideMockStore()],
+      providers: [
+        provideMockStore(),
+        { provide: LOCALE_ID, useValue: 'pt-BR' },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PropertyItemComponent);
@@ -87,7 +95,11 @@ describe('PropertyItemComponent', () => {
       expect(propertyDiv.textContent).toContain(component.property.title);
       expect(propertyDiv.textContent).toContain(component.property.description);
       expect(propertyDiv.textContent).toContain(
-        `${formatCurrency(component.property.price, 'en-US', 'R$')} / mês`
+        `${formatCurrency(
+          component.property.price * 0.01,
+          'pt-BR',
+          'R$'
+        )} / mês`
       );
     });
 
@@ -105,7 +117,7 @@ describe('PropertyItemComponent', () => {
       expect(propertyDiv.textContent).toContain(component.property.title);
       expect(propertyDiv.textContent).toContain(component.property.description);
       expect(propertyDiv.textContent).toContain(
-        formatCurrency(component.property.price, 'en-US', 'R$')
+        formatCurrency(component.property.price, 'pt-BR', 'R$')
       );
     });
 

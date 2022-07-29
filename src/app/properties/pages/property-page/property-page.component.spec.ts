@@ -1,4 +1,5 @@
-import { formatCurrency } from '@angular/common';
+import { formatCurrency, registerLocaleData } from '@angular/common';
+import localept from '@angular/common/locales/pt';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -8,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PropertiesService } from '../../properties.service';
 
 import { PropertyPageComponent } from './property-page.component';
+import { LOCALE_ID } from '@angular/core';
 
 describe('PropertyPageComponent', () => {
   let component: PropertyPageComponent;
@@ -16,10 +18,14 @@ describe('PropertyPageComponent', () => {
   let compiled: HTMLElement;
 
   beforeEach(async () => {
+    registerLocaleData(localept);
     await TestBed.configureTestingModule({
       declarations: [PropertyPageComponent],
       imports: [RouterTestingModule, HttpClientModule, SharedModule],
-      providers: [provideMockStore()],
+      providers: [
+        provideMockStore(),
+        { provide: LOCALE_ID, useValue: 'pt-BR' },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PropertyPageComponent);
@@ -68,7 +74,7 @@ describe('PropertyPageComponent', () => {
     expect(compiled.textContent).toContain(property.location.state);
     expect(compiled.textContent).toContain(property.location.city);
     expect(compiled.textContent).toContain(
-      `${formatCurrency(property.price, 'en-US', 'R$')} / mês`
+      `${formatCurrency(property.price * 0.01, 'pt-BR', 'R$')} / mês`
     );
     expect(compiled.textContent).toContain(property.description);
     expect(compiled.textContent).toContain(
