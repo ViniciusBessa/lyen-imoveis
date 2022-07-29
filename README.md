@@ -1,5 +1,5 @@
 # LyenImoveis
-> Um site de uma imobiliária feita no framework Angular
+> Um site de uma imobiliária feito no framework Angular
 
 Esse é um projeto feito em Angular, de uma imobiliária fictícia. O backend foi feito em Nodejs, com o framework Express e Mongoose, [o código pode ser encontrado aqui](https://github.com/ViniciusBessa/real-estate-api).
 
