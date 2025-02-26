@@ -60,6 +60,8 @@
   border: 2px solid black;
   font-size: 1.2rem;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 .navbar__flex:focus,

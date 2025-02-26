@@ -1,6 +1,9 @@
 <nav class="navbar">
   <button class="navbar__toggle" (click)="onToggleNavbar()">
-    <img src="assets/icons/iconmonstr-menu.svg" alt="Ícone de um botão de menu de celular"/>
+    <img
+      src="assets/icons/iconmonstr-menu.svg"
+      alt="Ícone de um botão de menu de celular"
+    />
   </button>
   <div class="container" [ngClass]="{ collapsed: isNavbarCollapsed }">
     <h4>
@@ -33,7 +36,7 @@
         >
       </li>
     </ul>
-    <div class="navbar__flex" [routerLink]="['/auth']" *ngIf="!isLoggedIn">
+    <a class="navbar__flex" [routerLink]="['/auth']" *ngIf="!isLoggedIn">
       <img
         width="15"
         height="auto"
@@ -41,7 +44,7 @@
         alt="Ícone de usuário"
       />
       <span>Entrar</span>
-    </div>
+    </a>
     <ul class="navbar__nav" *ngIf="isLoggedIn">
       <li><a class="navbar__link" (click)="onLogout()">Sair</a></li>
     </ul>
